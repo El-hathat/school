@@ -1,24 +1,30 @@
+'use client'
 import { Mail } from 'lucide-react'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect } from 'react'
 import cov from '@/public/images/student.jpg'
 import circle from '@/public/images/circle.png'
-
+import AOS from 'aos';
+import 'aos/dist/aos.css'
 function Accueil() {
+  useEffect(()=>{
+    AOS.init({duration:1000});
+    
+    },[]);
   return (
 <section className=" lg:flex z-10">
   <div className='hidden lg:flex flex-col w-[20%]'>
-  <Image src={circle}  alt="" className='ml-[15%] mt-6 z-0 w-[200px] h-[200px]'/>
-  <Image src={circle}  alt="" className=' mt-10 ml-[60%] z-0 w-[100px] h-[100px]'/>
+  <Image src={circle} data-aos="fade-up" alt="" className='ml-[15%] mt-6 z-0 w-[200px] h-[200px]'/>
+  <Image src={circle} data-aos="fade-down" alt="" className=' mt-10 ml-[60%] z-0 w-[100px] h-[100px]'/>
 
   </div>
 <div className="lg:w-[40%] pl-6 flex flex-col gap-4 pt-16">
   <div className="hidden"></div>
   <div className="">
-    <h1 className='text-3xl font-bold text-center :lgpl-32 lg:pr-20 pb-4 lg:pt-4'>Lorem ipsum dolor sit amet, consectetur</h1>
-    <p className='hidden lg:flex pl-20 pr-10 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi minus voluptatibus, distinctio illum minima laboriosam tempora, sunt enim nobis magnam corrupti commodi magni illo atque corporis cupiditate explicabo non sit?</p>
+    <h1 className='text-3xl font-bold text-center :lgpl-32 lg:pr-20 pb-4 lg:pt-4' data-aos="fade-right">Lorem ipsum dolor sit amet, consectetur</h1>
+    <p className='hidden lg:flex pl-20 pr-10 ' data-aos="fade-left">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi minus voluptatibus, distinctio illum minima laboriosam tempora, sunt enim nobis magnam corrupti commodi magni illo atque corporis cupiditate explicabo non sit?</p>
   </div>        
-  <form action="#" className="lg:flex hidden  lg:pt-3 lg:w-[120%] pl-3 pr-3 bg-white lg:h-16 rounded-md justify-between mt-4 z-50 shadow-[0_3px_10px_rgb(0,0,0,0.2)] ">
+  <form action="#" data-aos="zoom-out-down" className="lg:flex hidden  lg:pt-3 lg:w-[120%] pl-3 pr-3 bg-white lg:h-16 rounded-md justify-between mt-4 z-50 shadow-[0_3px_10px_rgb(0,0,0,0.2)] ">
         <div className="sm:flex-1 lg:flex">
           <label htmlFor="email" className="sr-only">Email</label>
 <div className='lg:flex lg:pt-2 hidden'><Mail color="#ff8367" /><pre className='text-wrap lg:w-40'>Email address  |</pre></div>
@@ -54,12 +60,12 @@ function Accueil() {
 <Image src={circle}  alt="" className='hidden lg:flex ml-[85%] z-0 w-[50px] h-[50px]'/>
 </div>
 <div className="lg:w-[40%] lg:h-[80%] -z-10">
-  <Image src={cov}  alt="" className='z-0 rounded-md lg:h-[420px] lg:w-[80%]'/>
-  <div className=" ml-16 lg:w-[400px] top-[120px] right-0 lg:h-[400px] bg-[#FF8367] opacity-20 absolute -z-10"></div>
-  <p className='lg:hidden pt-2 pl-5 pr-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi minus voluptatibus, distinctio illum minima laboriosam tempora, sunt enim nobis magnam corrupti commodi magni illo atque corporis cupiditate explicabo non sit?</p>
+  <Image src={cov}  alt="" className='z-0 rounded-md lg:h-[420px] lg:w-[80%]'data-aos="fade-up"/>
+  <div className=" ml-16 lg:w-[400px] top-[200px] right-0 lg:h-[400px] bg-[#FF8367] opacity-20 absolute -z-10"></div>
+  <p className='lg:hidden pt-2 pl-5 pr-5' data-aos="fade-right">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi minus voluptatibus, distinctio illum minima laboriosam tempora, sunt enim nobis magnam corrupti commodi magni illo atque corporis cupiditate explicabo non sit?</p>
 
 </div>
-<form action="#" className="flex flex-col lg:hidden sm:gap-4 lg:pt-3 lg:w-[150%] pl-3 pr-3 bg-white lg:h-16 rounded-md mt-4 ">
+<form action="#" data-aos="zoom-out-down" className="flex flex-col lg:hidden sm:gap-4 lg:pt-3 lg:w-[150%] pl-3 pr-3 bg-white lg:h-16 rounded-md mt-4 ">
         <div className="sm:flex-1 lg:flex">
           <label htmlFor="email" className="sr-only">Email</label>
 <div className='lg:flex    hidden'><Mail color="#ff8367" /><pre className='text-wrap lg:w-40'>Email address  |</pre></div>

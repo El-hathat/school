@@ -2,16 +2,25 @@
 import About from "./about/About";
 import Accueil from "./accueil/Accueil";
 import Events from "./events/Events";
+import Footer from "./footer/Footer";
+import Header from "./header/Header";
+import News from "./news/News";
 import Services from "./services/Services";
-import Watch from "./watch/Watch";
+import Testimonial from "./testimonial/Testimonial";
+
 export default function Home() {
   return (
   <>
-   <Accueil/> 
+  <Header />
+   {/* <Accueil/> 
 <About/> 
 <Watch /> 
 <Services />
-<Events />
+<Events /> 
+<Testimonial /> 
+<News />
+<Footer />
+*/}
   </>
   );
 }

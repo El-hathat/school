@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import circle from '@/public/images/circle.png'
 import Image from 'next/image'
-import Swip from './swip'
+import Swip from './Swip'
 import { Quote } from 'lucide-react'
 import AOS from 'aos';
 import 'aos/dist/aos.css'

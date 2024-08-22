@@ -82,7 +82,7 @@ function Header() {
               <a href='#' className="sm:flex sm:gap-4">
               
 
-                <div className='flex flex-row  pt-[6px]'><p className='text-[#ff8367] font-bold text-md ml-3 '>Login</p><LogIn color="#ff8367" /></div>
+                <a href='/signin' className='flex flex-row  pt-[6px]'><p className='text-[#ff8367] font-bold text-md ml-3 '>Login</p><LogIn color="#ff8367" /></a>
                               </a>
 
               <div className="block md:hidden">

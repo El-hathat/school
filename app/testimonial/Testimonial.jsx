@@ -19,7 +19,7 @@ function Testimonial() {
 
 
   return (
-    <section className='flex flex-col items-center lg:flex-row mt-16 bg-[#f99f8a1f] h-[500px] '>
+    <section className='flex flex-col items-center lg:flex-row mt-16 bg-[#f99f8a1f] h-[500px] overflow-y-hidden'>
     <div className="hidden w-[10%] lg:flex">
     <Image src={circle} alt='' className='hidden lg:flex w-16 h-16 relative top-[70%] left-[60%]' data-aos="fade-right"/>
 

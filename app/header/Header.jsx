@@ -25,7 +25,7 @@ function Header() {
 
   return (
     <div className='overflow-x-hidden'>
-      <header className="bg-white fixed z-[400] w-full shadow-md">
+      <header className="bg-[#ffffff] bg-opacity-95 lg:bg-opacity-100 lg:bg-white fixed z-[400] w-full shadow-md">
         <div className="mx-auto  px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="md:flex md:items-center md:gap-12 lg:flex lg:justify-start">
@@ -120,42 +120,42 @@ function Header() {
         </div>
         {isMenuOpen && (
           <div className="md:hidden">
-            <nav aria-label="Global">
+            <nav aria-label="Global" className=''>
               <ul className="flex flex-col items-center gap-4 text-sm">
                 <li>
                 <a href="/" className="px-5 py-2.5 relative rounded group overflow-hidden font-medium     text-[#ff8367] inline-block">
 <span className="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-[#ff8367] group-hover:h-full opacity-90"></span>
-<span className="relative group-hover:text-white">Home</span>
+<span className="relative group-hover:text-white font-bold" onClick={toggleMenu}>Home</span>
 </a>
                 </li>
                 <li>
                 <a href="#about" className="px-5 py-2.5 relative rounded group overflow-hidden font-medium     text-[#ff8367] inline-block">
 <span className="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-[#ff8367] group-hover:h-full opacity-90"></span>
-<span className="relative group-hover:text-white">About Us</span>
+<span className="relative group-hover:text-white font-bold" onClick={toggleMenu}>About Us</span>
 </a>
                 </li>
                 <li>
                 <a href="#services"  className="px-5 py-2.5 relative rounded group overflow-hidden font-medium     text-[#ff8367] inline-block">
 <span  className="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-[#ff8367] group-hover:h-full opacity-90"></span>
-<span  className="relative group-hover:text-white">Services</span>
+<span  className="relative group-hover:text-white font-bold" onClick={toggleMenu}>Services</span>
 </a>
                 </li>
                 <li>
                 <a href="#events"  className="px-5 py-2.5 relative rounded group overflow-hidden font-medium     text-[#ff8367] inline-block">
 <span  className="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-[#ff8367] group-hover:h-full opacity-90"></span>
-<span  className="relative group-hover:text-white">Events</span>
+<span  className="relative group-hover:text-white font-bold" onClick={toggleMenu}>Events</span>
 </a>
                 </li>
                 <li>
                 <a href="#news"  className="px-5 py-2.5 relative rounded group overflow-hidden font-medium     text-[#ff8367] inline-block">
 <span  className="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-[#ff8367] group-hover:h-full opacity-90"></span>
-<span  className="relative group-hover:text-white">News</span>
+<span  className="relative group-hover:text-white font-bold" onClick={toggleMenu}>News</span>
 </a>
                 </li>
                 <li>
                 <a href="/contact"  className="px-5 py-2.5 relative rounded group overflow-hidden font-medium     text-[#ff8367] inline-block">
 <span  className="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-[#ff8367] group-hover:h-full opacity-90"></span>
-<span  className="relative group-hover:text-white">Contact Us</span>
+<span  className="relative group-hover:text-white font-bold" onClick={toggleMenu}> Contact Us</span>
 </a>
                 </li>
               </ul>

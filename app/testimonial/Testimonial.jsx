@@ -19,7 +19,7 @@ function Testimonial() {
 
 
   return (
-    <section className='flex flex-col items-center lg:flex-row mt-16 bg-[#f99f8a1f] h-[500px] overflow-y-hidden'>
+    <section className='flex flex-col items-center lg:flex-row mt-16 bg-[#f99f8a1f] h-[600px] overflow-y-hidden'>
     <div className="hidden w-[10%] lg:flex">
     <Image src={circle} alt='' className='hidden lg:flex w-16 h-16 relative top-[70%] left-[60%]' data-aos="fade-right"/>
 
@@ -31,7 +31,7 @@ function Testimonial() {
       
 
     </div>
-    <div className="w-full lg:w-[50%] flex flex-col lg:flex-row  lg:flex-wrap items-center pt-4 gap-8 h-[1320px] lg:h-[500px] pl-2 pr-2 overflow-x-hidden"  data-aos="fade-left">
+    <div className="w-full lg:w-[50%] flex flex-col lg:flex-row  lg:flex-wrap items-center pt-4 gap-8 h-full lg:h-[500px] pl-2 pr-2 overflow-x-hidden overflow-y-hidden"  data-aos="fade-left">
      <Swip />
       
     </div>

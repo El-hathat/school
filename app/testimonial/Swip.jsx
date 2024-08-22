@@ -16,7 +16,7 @@ function Swip() {
 
 
 
-const tem= <blockquote className="rounded-lg bg-white p-6 shadow-sm sm:p-8 lg:w-[90%] shadow-xl shadow-gray-500">
+const tem= <blockquote className="rounded-lg bg-white p-6 shadow-sm sm:p-8 lg:w-[90%] shadow-xl shadow-gray-500 ">
 <div className="flex items-center gap-4">
   <img
     alt=""
@@ -31,7 +31,7 @@ const tem= <blockquote className="rounded-lg bg-white p-6 shadow-sm sm:p-8 lg:w-
 
     <p className="mt-0.5 text-lg font-medium text-[#ff8367] ">Student</p>
   </div>
-  <div className='lg:pl-[200px]'><Quote color="#ff8367" className='rotate-180 w-12 h-12 relative left-[85%] ' /></div>  
+  <div className='lg:pl-[200px]'><Quote color="#ff8367" className='rotate-180 w-12 h-12 relative left-[15%] ' /></div>  
 </div>
 
 <p className="mt-4 text-gray-700">

@@ -13,7 +13,7 @@ function page() {
       <div   className="lg:w-[70%] flex w-full max-w-sm mx-auto overflow-hidden bg-white bg-opacity-30   rounded-lg shadow-lg   lg:max-w-4xl">
     <div   className="hidden bg-cover lg:block lg:w-1/2" style={{backgroundImage: 'url(https://img.freepik.com/photos-premium/fille-est-assise-devant-ordinateur-mot-mathematiques-tableau-noir_1104772-4194.jpg)'}}></div>
 
-    <div  className="w-full  max-w-sm mx-auto overflow-hidden bg-gray-500 bg-opacity-60 lg:bg-opacity-0  rounded-lg shadow-md  ">
+    <div  className="w-full  max-w-sm mx-auto overflow-hidden bg-gray-500 bg-opacity-90 lg:bg-opacity-0  rounded-lg shadow-md  ">
     <div  className="px-6 py-4">
         <div  className="flex justify-center mx-auto">
             <Image  className="w-[130px] h-[100px] " src={logo} alt=""/>

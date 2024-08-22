@@ -18,7 +18,7 @@ function page() {
         <div class="grid grid-cols-1 gap-12 mt-10 lg:grid-cols-2">
             <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
                 <div className='flex items-center justify-evenly'>
-                    <div class="inline-block p-3 h-12 w-12 text-blue-500 rounded-full bg-[#f9c3b77d] dark:bg-gray-800">
+                    <div class="inline-block p-3 h-12 w-12 text-blue-500 rounded-full bg-[#f9c3b77d]  ">
                     <Mail color="#ff8367" />
                     </div>
                     <div>
@@ -28,7 +28,7 @@ function page() {
                 </div>
 
                 <div className='flex items-center justify-evenly'>
-                    <div class="inline-block h-12 w-12 p-3 text-blue-500 rounded-full bg-[#f9c3b77d]  dark:bg-gray-800">
+                    <div class="inline-block h-12 w-12 p-3 text-blue-500 rounded-full bg-[#f9c3b77d]   ">
                         <Image src={whatsapp} alt='' className='w-6 h-6'/>
                     </div>
                     <div>
@@ -38,7 +38,7 @@ function page() {
                 </div>
 
                 <div className='flex items-center justify-evenly '>
-                    <div class="inline-block h-12 w-12 p-3 text-blue-500 rounded-full bg-[#f9c3b77d]  dark:bg-gray-800">
+                    <div class="inline-block h-12 w-12 p-3 text-blue-500 rounded-full bg-[#f9c3b77d]   ">
                     <MapPin color="#ff8367" />
                     </div>
                     <div>
@@ -49,7 +49,7 @@ function page() {
                 </div>
 
                 <div className='flex items-center justify-evenly'>
-                    <div class="inline-block h-12 w-12 p-3 text-blue-500 rounded-full bg-[#f9c3b77d]  dark:bg-gray-800">
+                    <div class="inline-block h-12 w-12 p-3 text-blue-500 rounded-full bg-[#f9c3b77d]   ">
                     <Phone color="#ff8367" />
                     </div>
                     <div>
@@ -60,7 +60,7 @@ function page() {
                 </div>
             </div>
 
-            <div class="p-4 py-6 rounded-lg bg-gray-50 dark:bg-gray-800 md:p-8">
+            <div class="p-4 py-6 rounded-lg bg-gray-50   md:p-8">
                 <form>
                     <div class="-mx-2 md:items-center md:flex">
                         <div class="flex-1 px-2">

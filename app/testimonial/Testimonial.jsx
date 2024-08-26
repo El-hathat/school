@@ -9,7 +9,7 @@ import 'aos/dist/aos.css'
 function Testimonial() {
 
   useEffect(()=>{
-    AOS.init({duration:2000});
+    AOS.init({duration:1000});
     
     },[]);
 
@@ -25,9 +25,9 @@ function Testimonial() {
 
     </div>
     <div className=" lg:w-[35%] flex flex-col items-center lg:justify-center ">
-    <h1 className='text-2xl font-bold text-[#FF8367] text-center' data-aos="zoom-in-right">Testimonial</h1>
-        <p className='text-xl font-semibold text-center pb-3' data-aos="zoom-in-down">Se what our client say's</p>
-        <p className='text-sm lg:text-lg pl-6 pt-1 pb-3 pr-6 lg:w-[90%]  text-center' data-aos="fade-up">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui suscipit optio ipsa soluta est, aspernatur recusandae molestiae, facilis magnam ullam magni eaque tempore quibusdam odit neque aut itaque ex ab.</p>
+    <h1 className='text-2xl font-bold text-[#FF8367] text-center' data-aos="zoom-in-right">Témoignage</h1>
+        <p className='text-xl font-semibold text-center pb-3' data-aos="zoom-in-down">Voyez ce que dit notre client</p>
+        <p className='text-sm lg:text-lg pl-6 pt-1 pb-3 pr-6 lg:w-[90%]  text-center' data-aos="fade-up">Bienvenue sur notre page Témoignages, où nos élèves, parents, et enseignants partagent leurs expériences authentiques. Découvrez comment notre école a marqué leurs parcours et laissez-vous inspirer par leurs histoires, reflet de notre engagement et passion.</p>
       
 
     </div>

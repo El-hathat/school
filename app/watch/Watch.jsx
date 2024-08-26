@@ -6,7 +6,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'
 function Watch() {
   useEffect(()=>{
-    AOS.init({duration:2000});
+    AOS.init({duration:1000});
     
     },[]);
   return (
@@ -17,8 +17,8 @@ function Watch() {
       </div>
 
       <div className=' ml-2 mr-2 lg:w-[60%]'>
-          <h1 className='text-2xl font-bold text-[#FF8367] text-center' data-aos="fade-left">Watch Us</h1>
-          <p className='text-xl font-semibold text-center pb-3' data-aos="fade-right">Lorem ipsum sit amet consectetur.</p>
+          <h1 className='text-2xl font-bold text-[#FF8367] text-center' data-aos="fade-left">Regardez-nous</h1>
+          <p className='text-xl font-semibold text-center pb-3' data-aos="fade-right">Plongez au Cœur de Notre École en Vidéo !</p>
           <video className="h--16 w-full rounded-xl " controls autoPlay data-aos="zoom-out-down">
       <source src="https://videos.pond5.com/office-desk-modern-start-workflow-footage-092174388_main_xxl.mp4" type="video/mp4" />
     

@@ -30,7 +30,7 @@ function Header() {
           <div className="flex h-16 items-center justify-between">
             <div className="md:flex md:items-center md:gap-12 lg:flex lg:justify-start">
               <a className="block text-teal-600" href="/">
-                <span className="sr-only">Home</span>
+                <span className="sr-only">Accueil</span>
                 <Image src={logo} alt="logo" className='w-16 h-16'/>
               </a>
             </div>
@@ -41,13 +41,13 @@ function Header() {
                 <li>
                 <a href="/" className="px-5 py-2.5 relative rounded group overflow-hidden font-medium     text-[#ff8367] inline-block">
 <span  className="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-[#ff8367] group-hover:h-full opacity-90"></span>
-<span  className="relative group-hover:text-white">Home</span>
+<span  className="relative group-hover:text-white">Accueil</span>
 </a>
                 </li>
                 <li>
                 <a href="#about" className="px-5 py-2.5 relative rounded group overflow-hidden font-medium     text-[#ff8367] inline-block">
 <span  className="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-[#ff8367] group-hover:h-full opacity-90"></span>
-<span  className="relative group-hover:text-white">About Us</span>
+<span  className="relative group-hover:text-white">Apropos </span>
 </a>
                 </li>
                 <li>
@@ -59,19 +59,19 @@ function Header() {
                 <li>
                 <a href="#events" className="px-5 py-2.5 relative rounded group overflow-hidden font-medium     text-[#ff8367] inline-block">
 <span  className="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-[#ff8367] group-hover:h-full opacity-90"></span>
-<span  className="relative group-hover:text-white">Events</span>
+<span  className="relative group-hover:text-white">Evenements</span>
 </a>
                 </li>
                 <li>
                 <a href="#news" className="px-5 py-2.5 relative rounded group overflow-hidden font-medium     text-[#ff8367] inline-block">
 <span  className="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-[#ff8367] group-hover:h-full opacity-90"></span>
-<span  className="relative group-hover:text-white">News</span>
+<span  className="relative group-hover:text-white">Actualités</span>
 </a>
                 </li>
                 <li>
                 <a href="/contact" className="px-5 py-2.5 relative rounded group overflow-hidden font-medium     text-[#ff8367] inline-block">
 <span  className="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-[#ff8367] group-hover:h-full opacity-90"></span>
-<span  className="relative group-hover:text-white">Contact Us</span>
+<span  className="relative group-hover:text-white">Contactez-nous</span>
 </a>
                 </li>
                 </ul>
@@ -79,11 +79,11 @@ function Header() {
             </div>
 
             <div className="flex flex-row  gap-1">
-              <a href='#' className="sm:flex sm:gap-4">
+              <div  className="sm:flex sm:gap-4">
               
 
                 <a href='/signin' className='flex flex-row  pt-[6px]'><p className='text-[#ff8367] font-bold text-md ml-3 '>Login</p><LogIn color="#ff8367" /></a>
-                              </a>
+                              </div>
 
               <div className="block md:hidden">
                 <button 
@@ -125,13 +125,13 @@ function Header() {
                 <li>
                 <a href="/" className="px-5 py-2.5 relative rounded group overflow-hidden font-medium     text-[#ff8367] inline-block">
 <span className="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-[#ff8367] group-hover:h-full opacity-90"></span>
-<span className="relative group-hover:text-white font-bold" onClick={toggleMenu}>Home</span>
+<span className="relative group-hover:text-white font-bold" onClick={toggleMenu}>Accueil</span>
 </a>
                 </li>
                 <li>
                 <a href="#about" className="px-5 py-2.5 relative rounded group overflow-hidden font-medium     text-[#ff8367] inline-block">
 <span className="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-[#ff8367] group-hover:h-full opacity-90"></span>
-<span className="relative group-hover:text-white font-bold" onClick={toggleMenu}>About Us</span>
+<span className="relative group-hover:text-white font-bold" onClick={toggleMenu}>Apropos</span>
 </a>
                 </li>
                 <li>
@@ -143,19 +143,19 @@ function Header() {
                 <li>
                 <a href="#events"  className="px-5 py-2.5 relative rounded group overflow-hidden font-medium     text-[#ff8367] inline-block">
 <span  className="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-[#ff8367] group-hover:h-full opacity-90"></span>
-<span  className="relative group-hover:text-white font-bold" onClick={toggleMenu}>Events</span>
+<span  className="relative group-hover:text-white font-bold" onClick={toggleMenu}>Evenements</span>
 </a>
                 </li>
                 <li>
                 <a href="#news"  className="px-5 py-2.5 relative rounded group overflow-hidden font-medium     text-[#ff8367] inline-block">
 <span  className="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-[#ff8367] group-hover:h-full opacity-90"></span>
-<span  className="relative group-hover:text-white font-bold" onClick={toggleMenu}>News</span>
+<span  className="relative group-hover:text-white font-bold" onClick={toggleMenu}>Actualités</span>
 </a>
                 </li>
                 <li>
                 <a href="/contact"  className="px-5 py-2.5 relative rounded group overflow-hidden font-medium     text-[#ff8367] inline-block">
 <span  className="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-[#ff8367] group-hover:h-full opacity-90"></span>
-<span  className="relative group-hover:text-white font-bold" onClick={toggleMenu}> Contact Us</span>
+<span  className="relative group-hover:text-white font-bold" onClick={toggleMenu}> Contactez-nous</span>
 </a>
                 </li>
               </ul>

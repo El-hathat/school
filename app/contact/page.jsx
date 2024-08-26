@@ -8,11 +8,11 @@ function page() {
     <section class="bg-white dark:bg-gray-900">
     <div class="container px-6 py-12 mx-auto">
         <div>
-            <p class="font-bold text-[#ff8367] dark:text-[#ff8367] text-2xl text-center">Contact us</p>
+            <p class="font-bold text-[#ff8367] dark:text-[#ff8367] text-2xl text-center">Contactez-nous</p>
 
-            <h1 class="mt-2 text-2xl font-semibold text-gray-800 md:text-3xl dark:text-white">Lorem ipsum lorem lorem</h1>
+            <h1 class="mt-2 text-2xl font-semibold text-gray-800 md:text-3xl dark:text-white">Restons en Contact avec l'Avenir de vos Enfants !</h1>
 
-            <p class="mt-3 text-gray-500 dark:text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima non commodi illo porro pariatur ad repellat velit facere eveniet amet!</p>
+            <p class="mt-3 text-gray-500 dark:text-gray-400">Bienvenue sur notre page de contact, où chaque message compte. Que vous ayez des questions, des suggestions, ou besoin d'informations supplémentaires, nous sommes là pour vous aider. Notre équipe dévouée se tient prête à vous accompagner dans toutes vos démarches. Ensemble, construisons l'avenir de vos enfants, un message à la fois.</p>
         </div>
 
         <div class="grid grid-cols-1 gap-12 mt-10 lg:grid-cols-2">
@@ -24,7 +24,7 @@ function page() {
                     <div>
                     <h2 class="mt-4 text-base font-medium text-gray-800 dark:text-white">Email</h2>
                     <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 w-[200px]">contactez-nous par email</p>
-                    <p class="mt-2 text-sm text-blue-500 dark:text-[#ff8367]">info@example.com</p></div>
+                    <p class="mt-2 text-sm text-blue-500 dark:text-[#ff8367]">contact@nldigitalagency.com</p></div>
                 </div>
 
                 <div className='flex items-center justify-evenly'>
@@ -34,7 +34,7 @@ function page() {
                     <div>
                     <h2 class="mt-4 text-base font-medium text-gray-800 dark:text-white">Whatssap</h2>
                     <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Contactez-nous sur whatsapp.</p>
-                    <p class="mt-2 text-sm text-blue-500 dark:text-[#ff8367]"><a href="https://wa.me/+212694286773">Démarrer la discussion</a></p></div>
+                    <p class="mt-2 text-sm text-blue-500 dark:text-[#ff8367]"><a href="https://wa.me/+212707705393">Démarrer la discussion</a></p></div>
                 </div>
 
                 <div className='flex items-center justify-evenly '>
@@ -45,7 +45,7 @@ function page() {
                     <h2 class="mt-4 text-base font-medium text-gray-800 dark:text-white">Localisation</h2>
                     <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 w-[150px]"><a href="https://www.google.com/maps/place/34%C2%B001'42.7%22N+5%C2%B000'04.6%22W/@34.0285301,
                     -5.0038543,17z/data=!3m1!4b1!4m4!3m3!8m2!3d34.0285301!4d-5.0012794?entry=ttu" className='no-underline '>https://www.google.com/maps/place</a></p>
-                    <p class="mt-2 text-sm text-blue-500 dark:text-[#ff8367] w-[200px]">rue 13, Hay el-massira,Riad salam, fes</p></div>
+                    <p class="mt-2 text-sm text-blue-500 dark:text-[#ff8367] w-[200px]">Bureau Moulay Slimane 9 Ave St Louis, Fes 30000</p></div>
                 </div>
 
                 <div className='flex items-center justify-evenly'>
@@ -55,7 +55,7 @@ function page() {
                     <div>
                     <h2 class="mt-4 text-base font-medium text-gray-800 dark:text-white">Tel</h2>
                     <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Lundi-Samedi , 8:00 to 18:00</p>
-                    <p class="mt-2 text-sm text-blue-500 dark:text-[#ff8367]">+212 61234-5678</p>
+                    <p class="mt-2 text-sm text-blue-500 dark:text-[#ff8367]">+212 5 32 08 83 73</p>
                     </div>
                 </div>
             </div>

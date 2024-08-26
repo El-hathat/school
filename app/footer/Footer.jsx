@@ -20,15 +20,11 @@ function Footer() {
         <nav aria-label="Global" className="hidden md:block" data-aos="zoom-in-down">
         <ul className="flex items-center gap-6 text-sm">
           <li>
-            <a className=" text-white transition hover:text-[#ff8367]" href="#" > About </a>
+            <a className=" text-white transition hover:text-[#ff8367]" href="#" > Accueil </a>
           </li>
 
           <li>
-            <a className=" text-white transition hover:text-[#ff8367]" href="#" > Careers </a>
-          </li>
-
-          <li>
-            <a className=" text-white transition hover:text-[#ff8367]" href="#" > History </a>
+            <a className=" text-white transition hover:text-[#ff8367]" href="#" > Apropos </a>
           </li>
 
           <li>
@@ -36,11 +32,16 @@ function Footer() {
           </li>
 
           <li>
-            <a className=" text-white transition hover:text-[#ff8367]" href="#" > Projects </a>
+            <a className=" text-white transition hover:text-[#ff8367]" href="#" > Evenements </a>
           </li>
 
           <li>
-            <a className=" text-white transition hover:text-[#ff8367]" href="#" > Blog </a>
+            <a className=" text-white transition hover:text-[#ff8367]" href="#" > Actualités
+ </a>
+          </li>
+
+          <li>
+            <a className=" text-white transition hover:text-[#ff8367]" href="#" > Contactez-nous </a>
           </li>
         </ul>
       </nav>

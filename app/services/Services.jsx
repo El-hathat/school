@@ -59,7 +59,7 @@ setView(!view)
 chaque section pour en savoir plus et tirer le meilleur parti de notre plateforme.</p>
           <button type="button" className="hidden lg:flex mt-3 w-[200px]  focus:outline-none
            text-white bg-[#FF8367] hover:shadow-lg hover:opacity-60 font-medium rounded-lg text-sm px-5 
-            py-2.5 me-2 mb-2 " data-aos="zoom-in-down" onClick={viewHandle}>{view?'VIEW LITTLE':'VIEW ALL SERVICES'}</button>
+            py-2.5 me-2 mb-2 " data-aos="zoom-in-down" onClick={viewHandle}>{view?'Voir moins':'Voir tout'}</button>
 
       </div>
       <div className="lg:w-[60%] flex flex-col lg:flex-row  lg:flex-wrap items-center pt-4 gap-8 h-[1320px] lg:h-[600px] overflow-y-hidden" style={view?{overflowY:'visible',height:'auto'}:{overflowY:'hidden'}}>
@@ -90,7 +90,7 @@ chaque section pour en savoir plus et tirer le meilleur parti de notre plateform
           </div>
       <button type="button" className="lg:hidden flex mt-3 w-[200px]  focus:outline-none
            text-white bg-[#FF8367] hover:shadow-lg hover:opacity-60 font-medium rounded-lg text-sm px-5 
-            py-2.5 me-2 mb-2 " onClick={viewHandle}>{view?'VIEW LITTLE':'VIEW ALL SERVICES'}</button>
+            py-2.5 me-2 mb-2 text-center" onClick={viewHandle}>{view?'Voir moins':'Voir tout les servces'}</button>
       <div className="hidden w-[10%] lg:flex">
       <Image src={circle} alt='' className='hidden lg:flex w-16 h-16 relative   top-[30%]' data-aos="zoom-in-down"/>
 

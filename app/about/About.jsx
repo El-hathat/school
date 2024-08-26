@@ -43,10 +43,12 @@ function About() {
           <p className='text-2xl mt-2 font-semibold text-center ' data-aos="fade-left">Chez NL School, nous sommes dedies a offrir une experience educative numerique innovante.</p>
         
         </div>
-            <div className="flex text-sm lg:text-md pt-4 gap-2 pb-2 lg:pl-4" data-aos="fade-up"><CircleCheck color='#FF8367' className='min-w-8 max-w-8  max-h-8 min-h-8'/> <p className='h-[40px] '>Notre mission est de simplifier la gestion scolaire en fournissant une plateforme intuitive et facile a
+            <div className="flex text-sm lg:text-md pt-4 gap-2 pb-2 lg:pl-4" data-aos="fade-up"><CircleCheck color='#FF8367' className='min-w-8 max-w-8  max-h-8 min-h-8'/> <p className='h-[40px] ' style={view?{overflow:'visible',height:'100%'}:{overflow:'hidden',textOverflow:'ellipsis',height:'20px'}}>
+              Notre mission est de simplifier la gestion scolaire en {view?'':'...'} fournissant une plateforme intuitive {view?'':'...'} {view?'':<br/>}et facile a
 utiliser, qui renforce la communication entre les eleves, les parents, et les enseignants.</p></div>
-      <div className=" flex text-sm lg:text-md gap-2  lg:pl-4    " data-aos="fade-up"><CircleCheck color='#FF8367' className='min-w-8 max-w-8  max-h-8 min-h-8 mt-[0px]'/><p className='h-[40px] ' style={view?{overflow:'visible',height:'100%'}:{overflow:'hidden',textOverflow:'ellipsis'}}>Avec NL School, vous avez acces a des outils pedagogiques de pointe qui favorisent un
-apprentissage{view?'':'...'} {view?'':<br/>} actif et autonome. Nous croyons que l'education doit etre accessible, flexible, et
+      <div className=" flex text-sm lg:text-md gap-2  lg:pl-4    " data-aos="fade-up"><CircleCheck color='#FF8367' className='min-w-8 max-w-8  max-h-8 min-h-8 mt-[0px]'/><p className='h-[40px] ' style={view?{overflow:'visible',height:'100%'}:{overflow:'hidden',textOverflow:'ellipsis',height:'20px'}}>
+        Avec NL School, vous avez acces a des outils {view?'':'...'} pedagogiques de pointe qui favorisent un
+apprentissage actif et autonome. Nous croyons que l'education doit etre accessible, flexible, et
 adaptee aux besoins de chaque etudiant. Rejoignez-nous pour decouvrir comment nous
 revolutionnons l'education grace a la technologie.</p></div>
       <button data-aos="fade-up" type="button" onClick={viewHandle} className="mt-4 lg:mt-0  w-[200px] ml-[25%] focus:outline-none text-white bg-[#FF8367] hover:bg-[#eda0a8] focus:ring-4 focus:ring-[#FF8367] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Voir plus</button>

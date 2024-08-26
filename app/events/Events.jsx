@@ -64,7 +64,7 @@ pouvez rester a jour avec tous les evenements a venir tels que :</p>
 enentsArray?.map((item,index)=>(
 
 <div className="flex flex-row shadow-sm w-full lg:w-[45%]" data-aos="zoom-out-down" key={index}>
-  <div className="flex flex-col  rounded-sm bg-white w-[200px] h-[100px] border-4 border-dashed border-[#FF8367] shadow-lg">
+  <div className="flex flex-col  rounded-sm bg-white w-[100px] h-[100px] border-4 border-dashed border-[#FF8367] shadow-lg">
 <h1 className='text-4xl font-bold text-center text-[#FF8367]'>{item?.day}</h1>
 <p className=' text-lg text-center text-nowrap  pr-4'>{item?.date}</p>
 </div>

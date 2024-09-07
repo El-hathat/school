@@ -1,4 +1,7 @@
 
+import Dash from "./dashbord/page";
+import Content from "./dashbord/content/page";
+import SideBar from "./dashbord/sideBar/SideBar";
 import About from "./about/About";
 import Accueil from "./accueil/Accueil";
 import Events from "./events/Events";
@@ -11,8 +14,8 @@ import Testimonial from "./testimonial/Testimonial";
 export default function Home() {
   return (
   <>
-  <Header />
-   {/* <Accueil/> 
+   <Dash /> 
+    {/* <Accueil/>  
 <About/> 
 <Watch /> 
 <Services />

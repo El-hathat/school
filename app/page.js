@@ -11,17 +11,17 @@ import Watch from "./watch/Watch";
 
 export default function Home() {
   return (
-  <>
-   <Header/>
-     <Accueil/>  
+  <div className="overflow-x-hidden">
+
+<Accueil/>  
 <About/> 
 <Watch /> 
 <Services />
 <Events /> 
 <Testimonial /> 
 <News />
-<Footer />
 
-  </>
+
+  </div>
   );
 }

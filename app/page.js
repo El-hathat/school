@@ -12,7 +12,7 @@ import Watch from "./watch/Watch";
 export default function Home() {
   return (
   <div className="overflow-x-hidden">
-
+<Header />
 <Accueil/>  
 <About/> 
 <Watch /> 
@@ -20,7 +20,7 @@ export default function Home() {
 <Events /> 
 <Testimonial /> 
 <News />
-
+<Footer/>
 
   </div>
   );

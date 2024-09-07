@@ -1,11 +1,8 @@
 import React from 'react'
-import Content from './content/page'
 
 function page() {
   return (
-    <div>
-      <Content/>
-    </div>
+    <div>page des factures</div>
   )
 }
 

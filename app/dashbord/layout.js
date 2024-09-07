@@ -26,10 +26,10 @@ export default function RootLayout({ children }) {
       <div className=' z-40 lg:z-auto absolute lg:hidden transition-[left] ease-in-out delay-100' style={menuOpen?{left:0}:{left:'-100%'}}>  <SideBar /> </div>
     <div className='rotate-180 flex absolute  top-6 z-50  lg:hidden transition-[left] ease-in-out delay-100' style={menuOpen?{left:'200px'}:{left:'-100%'}}> <ArrowRight onClick={menuHandle}/></div>
     
-      <div className="flex-1 overflow-auto w-[100%]">
+      <div className="flex-1 overflow-auto w-[100%] ">
         {/* Header */}
-        <header className="bg-white p-4 shadow-sm ">
-          <div className="flex items-center justify-between">
+        <header className="bg-white p-4 shadow-sm fixed w-full">
+          <div className="flex items-center justify-between ">
             <h1 className="text-2xl font-semibold hidden lg:flex">Dashboard</h1>
             <div class="flex  items-center  -mx-2 lg:hidden">
             
@@ -53,8 +53,10 @@ export default function RootLayout({ children }) {
             </div>
           </div>
         </header>
+        <div className="mt-20">
+          {children}
+          </div>
         
-        {children}
         </div>
         </div>
         

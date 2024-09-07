@@ -1,7 +1,4 @@
 
-import Dash from "./dashbord/page";
-import Content from "./dashbord/content/page";
-import SideBar from "./dashbord/sideBar/SideBar";
 import About from "./about/About";
 import Accueil from "./accueil/Accueil";
 import Events from "./events/Events";
@@ -10,12 +7,13 @@ import Header from "./header/Header";
 import News from "./news/News";
 import Services from "./services/Services";
 import Testimonial from "./testimonial/Testimonial";
+import Watch from "./watch/Watch";
 
 export default function Home() {
   return (
   <>
-   <Dash /> 
-    {/* <Accueil/>  
+   <Header/>
+     <Accueil/>  
 <About/> 
 <Watch /> 
 <Services />
@@ -23,7 +21,7 @@ export default function Home() {
 <Testimonial /> 
 <News />
 <Footer />
-*/}
+
   </>
   );
 }

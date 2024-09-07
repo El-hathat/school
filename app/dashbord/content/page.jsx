@@ -51,11 +51,14 @@ export default function page() {
           </div>
 
           <div className="mt-6 ">
-            <div className="col-span-4 bg-white p-6 rounded-lg shadow">
+          <div className="col-span-4 bg-white p-6 rounded-lg shadow">
               <h2 className="text-lg font-semibold mb-4">Statistics</h2>
-              <div className="h-[200px] w-[100%] bg-gray-100 flex items-end justify-between p-4">
-              
+              <div className="h-[200px] w-full bg-gray-100 flex items-end justify-between p-4">
+                {[1/3, 1/2, 1/4, 3/4, 2/3, 1/2].map((height, index) => (
+                  <div key={index} className="w-8 bg-purple-500" style={{height: `${height * 100}%`}}></div>
+                ))}
               </div>
+            
             </div>
             
           </div>

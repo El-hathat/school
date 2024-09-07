@@ -35,9 +35,9 @@ function page() {
             <div  className="flex items-center justify-between mt-4">
                 <a href="#"  className="text-sm text-white  hover:text-white">Forget Password?</a>
 
-                <button  className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#ff8367] rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                <a href='/dashbord'  className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#ff8367] rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                     Sign In
-                </button>
+                </a>
             </div>
         </form>
     </div>

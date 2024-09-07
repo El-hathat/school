@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
             <div class="flex  items-center  -mx-2 lg:hidden">
             
         <img class="object-cover w-10 h-10 mx-2 rounded-full" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="avatar" />
-        <div className=" w-6 h-6 bg-white absolute top-[40px] left-[32px] rounded-full shadow-md border-gray-100 border-solid border-2 " onClick={menuHandle}><Menu className='w-5 h-5'/></div>
+        <div className=" w-6 h-6 bg-white absolute top-[45px] left-[32px] rounded-full shadow-md border-gray-100 border-solid border-2 " onClick={menuHandle}><Menu className='w-5 h-5'/></div>
         <h4 class="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200">El-hathat mohamed</h4>
         
        

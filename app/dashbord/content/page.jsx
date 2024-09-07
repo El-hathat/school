@@ -52,7 +52,7 @@ export default function page() {
 
           <div className="mt-6 ">
           <div className="col-span-4 bg-white p-6 rounded-lg shadow">
-              <h2 className="text-lg font-semibold mb-4">Statistics</h2>
+              <h2 className="text-lg font-semibold mb-4">Statistiques</h2>
               <div className="h-[200px] w-full bg-gray-100 flex items-end justify-between p-4">
                 {[1/3, 1/2, 1/4, 3/4, 2/3, 1/2].map((height, index) => (
                   <div key={index} className="w-8 bg-purple-500" style={{height: `${height * 100}%`}}></div>
@@ -65,27 +65,24 @@ export default function page() {
 
           <div className="mt-6 grid gap-6 md:grid-cols-2 ">
             <div className="col-span-4 bg-white p-6 rounded-lg shadow">
-              <h2 className="text-lg font-semibold mb-4">Database</h2>
+              <h2 className="text-lg font-semibold mb-4">Notes des exams</h2>
               <div className="space-y-4">
                 {[
-                  { name: "Glenn Maxwell", score: "80/100", time: "12/10/22-10 PM", grade: "Excellent", status: "Pass" },
-                  { name: "Cathe Heavan", score: "70/100", time: "12/10/22-10 PM", grade: "Average", status: "Pass" },
-                  { name: "Yoader Gil", score: "35/100", time: "12/10/22-10 PM", grade: "Poor", status: "Fail" },
-                  { name: "Preeth Siring", score: "80/100", time: "12/10/22-10 PM", grade: "Excellent", status: "Pass" },
+                  { name: "Math", score: "18/20", time: "12/10/2024", grade: "Excellent"},
+                  { name: "Physic", score: "16/20", time: "12/10/2024", grade: "T.bien"},
+                  { name: "Geographie", score: "5/20", time: "12/10/2024", grade: "_"},
+                  { name: "Arabe", score: "11/20", time: "10/12/2024", grade: "Passable" },
                 ].map((student, index) => (
                   <div key={index} className="flex items-center justify-between">
                     <div className="flex items-center space-x-4">
-                      <Image src="/placeholder.svg?height=40&width=40" alt={student.name} width={40} height={40} className="rounded-full" />
-                      <div>
-                        <p className="font-medium">{student.name}</p>
-                        <p className="text-sm text-gray-500">{student.score}</p>
+                        <div>
+                        <p className="font-medium text-xs lg:text-md">{student.name}</p>
+                        <p className="text-sm text-gray-500 text-xs lg:text-md">{student.score}</p>
                       </div>
                     </div>
-                    <div className="text-sm text-gray-500">{student.time}</div>
-                    <div>{student.grade}</div>
-                    <div className={`rounded-full px-2 py-1 text-xs ${student.status === "Pass" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}>
-                      {student.status}
-                    </div>
+                    <div className="text-sm text-gray-500 text-xs lg:text-md">{student.time}</div>
+                    <div className='text-xs lg:text-md'>{student.grade}</div>
+                  
                   </div>
                 ))}
               </div>
@@ -96,35 +93,33 @@ export default function page() {
           </div>
 
           <div className="mt-3 bg-white p-6 rounded-lg shadow ml-6 mr-6">
-            <h2 className="text-lg font-semibold mb-4">Notice Board</h2>
+            <h2 className="text-lg font-semibold mb-4">Actualites du classe</h2>
             <div className="space-y-4">
               {[
                 {
                   title: "Notice of Special Examinations of Semester Spring 2021",
-                  author: "Justin Langer",
-                  image: "/placeholder.svg?height=40&width=40",
+                  author: "prof 2",
                 },
                 {
                   title: "Time Extension Notice of Semester Admission",
-                  author: "Daniel Vatory",
-                  image: "/placeholder.svg?height=40&width=40",
+                  author: "prof 3",
+                
                 },
                 {
                   title: "COVID-19 Vaccination Survey October 2021",
-                  author: "Jacob Oram",
-                  image: "/placeholder.svg?height=40&width=40",
+                  author: "Directeur",
+                  
                 },
                 {
                   title: "Scholarship Viva Notice Spring 2021",
-                  author: "name",
-                  image: "/placeholder.svg?height=40&width=40",
+                  author: "Deligue",
+                  
                 },
               ].map((notice, index) => (
-                <div key={index} className="flex items-start space-x-4">
-                  <Image src={notice.image} alt={notice.title} width={40} height={40} className="rounded-lg" />
+                <div key={index} className="flex items-start space-x-4 shadow-sm">
                   <div>
-                    <h3 className="font-medium">{notice.title}</h3>
-                    <p className="text-sm text-gray-500">By - {notice.author}</p>
+                    <h3 className="font-medium text-xs lg:text-md">{notice.title}</h3>
+                    <p className="text-sm text-gray-500 text-xs lg:text-md">By - {notice.author}</p>
                   </div>
                 </div>
               ))}

@@ -21,10 +21,10 @@ function page({params: {matiereID}}) {
 
 
 
-const aa=<div className="w-full px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+const aa=<div className="w-full lg:px-8 px-3 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
 <div className="flex items-center justify-between">
   <div className=" block">
-<div className="flex items-center">
+<div className="flex items-center px-5">
         <img className="object-cover ml-[-10%] w-10 h-10 mx-4 rounded-full sm:block" src="https://images.unsplash.com/photo-1502980426475-b83966705988?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=40&q=80" alt="avatar"/>
         <a className="font-bold text-gray-700 cursor-pointer dark:text-gray-200" tabindex="0" role="link">Khatab wedaa</a>
     </div> 
@@ -50,7 +50,7 @@ const aa=<div className="w-full px-8 py-4 bg-white rounded-lg shadow-md dark:bg-
     <div className="border-s border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
       
 
-      <p className="mt-2 line-clamp-3 lg:line-clamp-5 text-sm/relaxed text-gray-700">
+      <p className="mt-2 line-clamp-3 lg:line-clamp-5 text-xs/relaxed text-gray-700">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
         pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis
         quidem, mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius
@@ -60,21 +60,21 @@ const aa=<div className="w-full px-8 py-4 bg-white rounded-lg shadow-md dark:bg-
     </div>
     </div>
 
-<div className="w-full mx-auto p-4 bg-gray-50 rounded-lg mt-4">
+<div className="w-full mx-auto lg:p-4 p-1 bg-gray-50 rounded-lg mt-4">
       <div className="flex items-center gap-2 mb-4">
         <svg className="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
         </svg>
-        <h2 className="text-sm lg:text-lg font-semibold text-gray-700">Commentaires ajoutés au cours</h2>
+        <h2 className="text-sm font-light lg:text-lg lg:font-semibold text-gray-700">Commentaires ajoutés au cours</h2>
       </div>
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-medium">
+        <div className="w-10 h-10 min-w-10 min-h-10  bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-medium">
           U
         </div>
         <div className="relative flex-grow">
           <input 
             type="text"
-            className="w-full py-2 pl-3 pr-10 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full text-xs lg:text-lg py-2 pl-3 pr-10 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             placeholder="Ajouter un commentaire au cours..."
           />
           <button 
@@ -82,7 +82,7 @@ const aa=<div className="w-full px-8 py-4 bg-white rounded-lg shadow-md dark:bg-
             aria-label="Envoyer le commentaire"
           >
             
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg className="w-5 h-5 min-w-5 min-h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
             </svg>
           </button>
@@ -121,7 +121,7 @@ const aa=<div className="w-full px-8 py-4 bg-white rounded-lg shadow-md dark:bg-
     </div>
   </div>
 </section>
-    <div className='grid grid-cols-1  gap-6 m-6'>
+    <div className='grid grid-cols-1  gap-6 m-0 lg:m-6 '>
 {aa} {aa} {aa} {aa} {aa} {aa} {aa} {aa} {aa}  {aa}
 </div>
 </div>

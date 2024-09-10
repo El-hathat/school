@@ -66,7 +66,7 @@ export default function RootLayout({ children }) {
       :<div className=" w-6 h-12 bg-[#ff8367] absolute top-[40px] left-[-4px] rounded-2xl shadow-md shadow-orange-500 border-solid border-2 pt-3 " onClick={menuHandle} >
         <ChevronRight color="#ffff" />
           </div>}
-        <h4 class="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200">El-hathat mohamed</h4>
+        <h4 class="mx-2 mt-2 font-medium text-gray-800 ">El-hathat mohamed</h4>
       </div>
             <div className="flex items-center space-x-4">
               

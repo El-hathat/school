@@ -31,8 +31,8 @@ export default function RootLayout({ children }) {
     }
   }
 
-  let route=document.location.href.split('/')
-  route=route.slice(4,)
+  //let route=document.location.href.split('/')
+//  route=route.slice(4,)
   return (
     <html lang="en">
       
@@ -48,12 +48,12 @@ export default function RootLayout({ children }) {
           <div className="flex items-center justify-between flex-row">
           <div class="flex flex-row items-center  overflow-x-auto whitespace-nowrap hidden lg:flex ">
         <div><House/></div>  
-            {route.map((item,index)=>(
+            {/* {route.map((item,index)=>(
               <div className="flex flex-row gap-1 shadow-md shadow-gray-100">
             <ChevronRight/>
             <p>{item}</p>
            </div>
-            ))}
+            ))} */}
 
             </div>
             

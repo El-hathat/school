@@ -21,7 +21,7 @@ function page({params: {matiereID}}) {
 
 
 
-const aa=<a href={'/dashbord/cours/'+matiereID+'/part1Physic'} className="w-full lg:px-8 px-3 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+const aa=<div  className="w-full lg:px-8 px-3 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
 <div className="flex items-center justify-between">
   <div className=" block">
 <div className="flex items-center px-5">
@@ -88,11 +88,11 @@ const aa=<a href={'/dashbord/cours/'+matiereID+'/part1Physic'} className="w-full
           </button>
           
         </div>
-        <div className="flex flex-row"><MessageCircleMore />(22)</div>
+        <a href={'/dashbord/cours/'+matiereID+'/part1Physic'} className="flex flex-row"><MessageCircleMore />(22)</a>
         
       </div>
     </div>
-</a>
+</div>
 
 
 

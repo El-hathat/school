@@ -1,7 +1,7 @@
 'use client'
 import { Inter } from "next/font/google";
 import { useState } from "react";
-import { ArrowRight, ChevronRight, DownloadCloud, Menu } from "lucide-react";
+import { ArrowRight, ChevronRight, DownloadCloud, House, Menu } from "lucide-react";
 import SideBar from "./sideBar/SideBar";
 
 
@@ -30,6 +30,9 @@ export default function RootLayout({ children }) {
       setChange(true)
     }
   }
+
+  let route=document.location.href.split('/')
+  route=route.slice(4,)
   return (
     <html lang="en">
       
@@ -41,9 +44,19 @@ export default function RootLayout({ children }) {
     
       <div className="flex flex-col overflow-auto w-[100%] " id="content" onScroll={changeMenu}>
         {/* Header */}
-        <header className="bg-white p-4 shadow-sm h-16" >
-          <div className="flex items-center justify-between ">
-            <h1 className="text-2xl font-semibold hidden lg:flex">Dashboard</h1>
+        <header className="bg-white p-4 shadow-sm  border-b-2 border-solid border-gray-200 h-[60px]" >
+          <div className="flex items-center justify-between flex-row">
+          <div class="flex flex-row items-center  overflow-x-auto whitespace-nowrap hidden lg:flex ">
+        <div><House/></div>  
+            {route.map((item,index)=>(
+              <div className="flex flex-row gap-1 shadow-md shadow-gray-100">
+            <ChevronRight/>
+            <p>{item}</p>
+           </div>
+            ))}
+
+            </div>
+            
             <div class="flex  items-center  -mx-2 lg:hidden">
             
         <img class="object-cover w-10 h-10 mx-2 rounded-full" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="avatar" />
@@ -69,7 +82,7 @@ export default function RootLayout({ children }) {
             </div>
           </div>
         </header>
-        <div className="" >
+        <div className="mt-1" >
           {children}
           </div>
         

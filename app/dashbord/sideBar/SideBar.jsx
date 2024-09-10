@@ -5,6 +5,8 @@ import logo from '@/public/images/logo2.png'
 import Image from 'next/image'
 
 function SideBar() {
+
+  
   return (
     <div className='flex flex-row '>
       <aside className="flex  flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-white lg:bg-opacity-100 border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
@@ -49,10 +51,7 @@ function SideBar() {
                 <span className="mx-4 font-medium">Devoirs</span>
             </a>
 
-            <a className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href="/dashbord/exams">
-                <BookCheck />
-                <span className="mx-4 font-medium">Exams</span>
-            </a>
+            
 
             <a className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href="/dashbord/absence">
                 <CalendarDays />

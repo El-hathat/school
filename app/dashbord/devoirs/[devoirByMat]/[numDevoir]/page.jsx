@@ -30,7 +30,7 @@ export default function page({params:{numDevoir}}) {
         </button>
       </div>
       
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-4 text-xs lg:text-sm">
         <span className="font-semibold flex fex-row gap-5 items-center"><p>20 points</p> 
         <button className="text-sm font-light text-gray-600 dark:text-gray-400 flex flex-col items-center"><CloudDownload />Telecharger</button>
 
@@ -39,7 +39,7 @@ export default function page({params:{numDevoir}}) {
         <span className="text-sm text-gray-500">Date limite : 9 déc. 2023 23:59</span>
       </div>
       
-      <p className="mb-4">Application 2 : Travail individuel à déposer Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat atque dicta repudiandae sint eius illo ratione vitae laboriosam veniam eaque! Illum animi pariatur consequuntur tempore ducimus harum maiores dolorum quo?</p>
+      <p className="mb-4 test-xs lg:text-sm">Application 2 : Travail individuel à déposer Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat atque dicta repudiandae sint eius illo ratione vitae laboriosam veniam eaque! Illum animi pariatur consequuntur tempore ducimus harum maiores dolorum quo?</p>
       
       <div className="border-t pt-4 mb-4">
         <h2 className="text-sm font-semibold mb-2">1 commentaire ajouté au cours</h2>
@@ -75,18 +75,18 @@ export default function page({params:{numDevoir}}) {
         <div className="flex items-center justify-between bg-white p-3 rounded-md shadow-sm">
           <div className="flex items-center space-x-3">
           <div>
-    <label for="file" class="block text-sm text-gray-500 dark:text-gray-300">File</label>
+    <label for="file" className="block text-sm text-gray-500 dark:text-gray-300">File</label>
 
-    <label for="dropzone-file" class="flex flex-col items-center w-full max-w-lg p-5 mx-auto mt-2 text-center bg-white border-2 border-gray-300 border-dashed cursor-pointer dark:bg-gray-900 dark:border-gray-700 rounded-xl">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-gray-500 dark:text-gray-400">
+    <label for="dropzone-file" className="flex flex-col items-center w-full max-w-lg p-5 mx-auto mt-2 text-center bg-white border-2 border-gray-300 border-dashed cursor-pointer dark:bg-gray-900 dark:border-gray-700 rounded-xl">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-8 h-8 text-gray-500 dark:text-gray-400">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
         </svg>
 
-        <h2 class="mt-1 font-medium tracking-wide text-gray-700 dark:text-gray-200">Importer un fichier</h2>
+        <h2 className="mt-1 font-medium tracking-wide text-gray-700 dark:text-gray-200">Importer un fichier</h2>
 
-        <p class="mt-2 text-xs tracking-wide text-gray-500 dark:text-gray-400">les fichiers Supportee : images,document. </p>
+        <p className="mt-2 text-xs tracking-wide text-gray-500 dark:text-gray-400">les fichiers Supportee : images,document. </p>
 
-        <input id="dropzone-file" type="file" class="hidden" />
+        <input id="dropzone-file" type="file" className="hidden" />
     </label>
 </div>
           </div>

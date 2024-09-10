@@ -31,8 +31,8 @@ export default function RootLayout({ children }) {
     }
   }
 
-  //let route=document.location.href.split('/')
-//  route=route.slice(4,)
+  let route=document.location.href.split('/')
+  route=route.slice(4,)
   return (
     <html lang="en">
       
@@ -44,29 +44,29 @@ export default function RootLayout({ children }) {
     
       <div className="flex flex-col overflow-auto w-[100%] " id="content" onScroll={changeMenu}>
         {/* Header */}
-        <header className="bg-white p-4 shadow-sm  border-b-2 border-solid border-gray-200 h-[60px]" >
+        <header className="bg-white p-4 shadow-sm  border-b-2 border-solid border-gray-200 h-[75px]" >
           <div className="flex items-center justify-between flex-row">
-          <div class="flex flex-row items-center  overflow-x-auto whitespace-nowrap hidden lg:flex ">
+          <div className="flex flex-row items-center  overflow-x-auto whitespace-nowrap hidden lg:flex ">
         <div><House/></div>  
-            {/* {route.map((item,index)=>(
-              <div className="flex flex-row gap-1 shadow-md shadow-gray-100">
+            {route.map((item,index)=>(
+              <div className="flex flex-row gap-1 shadow-md shadow-gray-100" key={index}>
             <ChevronRight/>
             <p>{item}</p>
            </div>
-            ))} */}
+            ))}
 
             </div>
             
-            <div class="flex  items-center  -mx-2 lg:hidden">
+            <div className="flex  items-center  -mx-2 lg:hidden">
             
-        <img class="object-cover w-10 h-10 mx-2 rounded-full" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="avatar" />
+        <img className="object-cover w-10 h-10 mx-2 rounded-full" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="avatar" />
       {change==false?<div className=" w-6 h-6 bg-white absolute  left-[32px]  rounded-full shadow-md border-gray-100 border-solid border-2 " onClick={menuHandle} 
       style={{top:topHead}}>
         <Menu className='w-5 h-5'/></div>
       :<div className=" w-6 h-12 bg-[#ff8367] absolute top-[40px] left-[-4px] rounded-2xl shadow-md shadow-orange-500 border-solid border-2 pt-3 " onClick={menuHandle} >
         <ChevronRight color="#ffff" />
           </div>}
-        <h4 class="mx-2 mt-2 font-medium text-gray-800 ">El-hathat mohamed</h4>
+        <h4 className="mx-2 mt-2 font-medium text-gray-800 ">El-hathat mohamed</h4>
       </div>
             <div className="flex items-center space-x-4">
               

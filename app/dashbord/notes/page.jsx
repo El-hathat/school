@@ -14,9 +14,9 @@ const subjects = [
 
 export default function page() {
   return (
-    <div className="container mx-auto p-4 font-sans">
+    <div className="  p-4 font-sans">
       <h1 className="text-2xl font-bold mb-4">Suivi des notes</h1>
-      <div className="flex mb-4 space-x-4">
+      <div className="flex mb-4 ">
         <div className="w-1/2">
           <label className="block text-sm font-medium text-gray-700">Année Scolaire</label>
           <select className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">

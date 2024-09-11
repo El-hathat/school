@@ -1,39 +1,29 @@
-'use strict';
-const { createServer } = require('http');
-const { parse } = require('url');
-const next = require('next');
-const socketIo = require('socket.io');
+import { createServer } from "node:https";
+import next from "next";
+import { Server } from "socket.io";
 
-const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev });
-const handle = app.getRequestHandler();
+const dev = process.env.NODE_ENV !== "production";
+const hostname = "nlschool.vercel.app";
+const port = 3000;
+// when using middleware `hostname` and `port` must be provided below
+const app = next({ dev, hostname, port });
+const handler = app.getRequestHandler();
 
 app.prepare().then(() => {
-  const server = createServer((req, res) => {
-    const parsedUrl = parse(req.url, true);
-    handle(req, res, parsedUrl);
+  const httpServer = createServer(handler);
+
+  const io = new Server(httpServer);
+
+  io.on("connection", (socket) => {
+    // ...
   });
 
-  const io = socketIo(server);
-
-  io.on('connection', (socket) => {
-    console.log('Un utilisateur est connecté');
-
-    socket.on('offer', (data) => {
-      socket.broadcast.emit('offer', data);
+  httpServer
+    .once("error", (err) => {
+      console.error(err);
+      process.exit(1);
+    })
+    .listen(port, () => {
+      console.log(`> Ready on http://${hostname}:${port}`);
     });
-
-    socket.on('answer', (data) => {
-      socket.broadcast.emit('answer', data);
-    });
-
-    socket.on('candidate', (data) => {
-      socket.broadcast.emit('candidate', data);
-    });
-  });
-
-  app.listen(3000, (err) => {
-    if (err) throw err;
-    console.log('> Serveur prêt sur http://localhost:3000');
-  });
 });

@@ -1,22 +1,44 @@
-import React from 'react'
+'use client'
+import apis from '@/app/utils/apis';
+import React, { useEffect, useState } from 'react'
 
 
 
-const assignments = [
-  { id: 1, title: "TD 4 Diagramme d'activité 2" },
-  { id: 2, title: "TD 4 Diagramme d'activité 1" },
-  { id: 3, title: "TD 3 Diagramme d'états - transition Exer..." },
-  { id: 4, title: "TD 3 Diagramme d'états - transition Exer..." },
-  { id: 5, title: "TD 3 Diagramme d'états - transition Exer..." },
-  { id: 6, title: "TD 3 Diagramme d'états - transition Exer..." },
-]
+
 
 export default function page({params:{devoirByMat}}) {
+
+  const [devoirs, setDevoirs] = useState([]);
+
+
+  const getDevoirs = (devoir) => {
+    apis.getDevoirsByMatiere(devoir).then((res) => {
+      setDevoirs(res?.data || []);
+      console.log('devoirs', res);
+    });
+  };
+
+  
+
+  useEffect(() => {
+    getDevoirs(devoirByMat);
+  }, []);
+
+
+
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+
   return (
     <a href={'/dashbord/devoirs/'+devoirByMat+'/devoir 1'} className="max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
       <ul className="divide-y divide-gray-200">
-        {assignments.map((assignment) => (
-          <li key={assignment.id} className="p-4 hover:bg-gray-50">
+        {devoirs.map((assignment) => (
+          <li key={assignment.devoirID} className="p-4 hover:bg-gray-50">
             <div className="flex items-center space-x-4">
               <div className="flex-shrink-0">
                 <svg className="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -25,10 +47,11 @@ export default function page({params:{devoirByMat}}) {
               </div>
               <div className="flex flex-col lg:flex-row w-full justify-between">
                 <p className="text-sm font-medium text-gray-900 truncate">
-                  {assignment.title}
+                  {assignment?.devoirTitle}
                 </p>
                 <p className="text-sm text-gray-500">
-                  Aucune date limite
+                {assignment?.limiteDate ? formatter.format(new Date(assignment?.limiteDate)) : 'Aucune date limite'}
+                  
                 </p>
               </div>
             </div>

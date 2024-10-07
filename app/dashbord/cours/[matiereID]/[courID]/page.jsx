@@ -1,38 +1,34 @@
+'use client'
+import apis from '@/app/utils/apis';
 import { CloudDownload, MessageCircleMore } from 'lucide-react'
-import React from 'react'
+import React, {  useEffect, useState } from 'react'
+
 
 function page({params :{courID}}) {
 
+  
+  const[currentCour,setCurrentCour]=useState({})
+  const [prof, setProf] = useState();
+
+  const getCours = () => {
+    apis.getCoursDetails(courID).then(res => {
+      console.log(res)
+          setCurrentCour(res?.data);
+          
+        
+
+      
+    });
+  };
+  
+  useEffect(() => {
+    getCours();
+    
+  }, []);
 
 
 
-const com=<div className="flex items-start space-x-3 p-4 bg-white rounded-lg">
-<img
-  src="https://plus.unsplash.com/premium_photo-1682089892133-556bde898f2c?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-  alt="User avatar"
-  className="w-10 h-10 rounded-full cover "
-/>
-<div className="flex-1">
-  <div className="bg-gray-100 p-3 rounded-lg shadow">
-    <h3 className="font-bold text-sm mb-1">Mohamed el-hathat</h3>
-    <p className="text-xs lg text-sm" >
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, tempore dicta dolor.
-    </p>
-  </div>
-  <div className="flex items-center justify-between space-x-2 mt-2 text-sm text-gray-500">
-  <div className='flex gap-3'> <span>2d</span>
-    <button className="font-semibold">J'aime</button>
-    <button className="font-semibold" >Repondre</button></div> 
-    <span className="flex items-center">
-      <svg className="w-4 h-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
-        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
-      </svg>
-      2
-    </span>
-  </div>
-</div>
-
-</div>
+  const formatter = new Intl.DateTimeFormat('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' ,hour:'2-digit',minute:'2-digit' });
 
 
   return (
@@ -41,11 +37,8 @@ const com=<div className="flex items-start space-x-3 p-4 bg-white rounded-lg">
       <div className="w-full lg:px-8 px-3 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800  border-2 border-gray-200  border-solid">
 <div className="flex items-center justify-between ">
   <div className=" block ">
-<div className="flex items-center px-5 ">
-        <img className="object-cover ml-[-10%] w-10 h-10 mx-4 rounded-full sm:block" src="https://images.unsplash.com/photo-1502980426475-b83966705988?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=40&q=80" alt="avatar"/>
-        <a className="font-bold text-gray-700 cursor-pointer dark:text-gray-200" tabindex="0" role="link">Khatab wedaa</a>
-    </div> 
-    <span className="text-sm font-light text-gray-600 dark:text-gray-400">Mar 10, 2019</span>
+
+    <span className="text-sm font-light text-gray-600 dark:text-gray-400">{currentCour?.pubDate ? formatter.format(new Date(currentCour?.pubDate)) : 'N/A'}</span>
     </div>
     <button className="text-sm font-light text-gray-600 dark:text-gray-400 flex flex-col items-center"><CloudDownload />Telecharger</button>
   </div>
@@ -58,7 +51,7 @@ const com=<div className="flex items-start space-x-3 p-4 bg-white rounded-lg">
     />
     <a href="#">
         <h5 className="font-bold uppercase text-gray-900">
-          Cours d'electricite
+          {currentCour?.matName}
         </h5>
       </a>
   </div>
@@ -68,10 +61,7 @@ const com=<div className="flex items-start space-x-3 p-4 bg-white rounded-lg">
       
 
       <p className="mt-2 line-clamp-3 lg:line-clamp-5 text-xs/relaxed lg:text-sm text-gray-700">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-        pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis
-        quidem, mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius
-        atque dignissimos. Molestias explicabo corporis voluptatem?
+        {currentCour?.description}
       </p>
     </div>
     </div>
@@ -79,7 +69,65 @@ const com=<div className="flex items-start space-x-3 p-4 bg-white rounded-lg">
 
 
 <div className=" flex flex-col gap-1 mt-2">
-    {com}{com}{com}{com}{com}{com}{com}{com}
+{ Array.isArray(currentCour?.comments) ? currentCour?.comments?.map((item) => (
+item?.sousComment==false?  <div className="flex flex-col">
+  <div className="flex items-start space-x-3 p-4 bg-white rounded-lg">
+  <img
+    src="https://plus.unsplash.com/premium_photo-1682089892133-556bde898f2c?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    alt="User avatar"
+    className="w-10 h-10 rounded-full cover "
+  />
+  <div className="flex-1">
+    <div className="bg-gray-100 p-3 rounded-lg shadow">
+      <h3 className="font-bold text-sm mb-1">{item?.student==null?item?.teacher?.fullName:item?.student?.fullName}</h3>
+      <p className="text-xs lg text-sm" >
+        {item?.message}
+      </p>
+    </div>
+    <div className="flex items-center justify-between space-x-2 mt-2 text-sm text-gray-500">
+    <div className='flex gap-3'> <span>{item?.creationDate ? formatter.format(new Date(item?.creationDate)) : 'N/A'}</span>
+      <button className="font-semibold">J'aime</button>
+      <button className="font-semibold" >Repondre</button></div> 
+      <span className="flex items-center">
+        <svg className="w-4 h-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+        </svg>
+        {item?.likeCount}
+      </span>
+    </div>
+  </div>
+    </div>
+
+    { Array.isArray(item?.replies) ? item?.replies?.map((item1) => (
+  item1?.sousComment?<div className="flex items-start space-x-3 p-4 bg-white rounded-lg ml-10">
+  <img
+    src="https://plus.unsplash.com/premium_photo-1682089892133-556bde898f2c?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    alt="User avatar"
+    className="w-10 h-10 rounded-full cover "
+  />
+  <div className="flex-1">
+    <div className="bg-gray-100 p-3 rounded-lg shadow">
+      <h3 className="font-bold text-sm mb-1">{item1?.student==null?item1?.teacher?.fullName:item1?.student?.fullName}</h3>
+      <p className="text-xs lg text-sm" >
+        {item1?.message}
+      </p>
+    </div>
+    <div className="flex items-center justify-between space-x-2 mt-2 text-sm text-gray-500">
+    <div className='flex gap-3'> <span>{item1?.creationDate ? formatter.format(new Date(item1?.creationDate)) : 'N/A'}</span>
+      <button className="font-semibold">J'aime</button>
+      <button className="font-semibold" >Repondre</button></div> 
+      <span className="flex items-center">
+        <svg className="w-4 h-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+        </svg>
+        {item1?.likeCount}
+      </span>
+    </div>
+  </div>
+    </div>:<></>
+ )) : <></> }
+    </div>:<></>
+ )) : <p>No data available</p> }
     </div>
 
 
@@ -116,7 +164,7 @@ const com=<div className="flex items-start space-x-3 p-4 bg-white rounded-lg">
           </button>
           
         </div>
-        <div className="flex flex-row"><MessageCircleMore />(22)</div>
+        <div className="flex flex-row"><MessageCircleMore />({currentCour?.comments?.length})</div>
         
       </div>
     </div>

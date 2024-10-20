@@ -2,26 +2,38 @@
 import React, { useEffect, useState } from 'react'
 import Password from './password/page'
 import apis from '@/app/utils/apis';
+import { Atom } from 'react-loading-indicators';
 function page() {
-  const [student, setStudent] = useState({});
+  const [student, setStudent] = useState();
+  const [school, setSchool] = useState();
+  const [classe, setClasse] = useState();
+  const [bus, setBus] = useState();
 
   const getStudent = () => {
     apis.getStudent().then(res => {
-      setStudent(res?.data);
-      console.log('student', res);
+      console.log("res",res?.data)
+    res?.data?  setStudent(res?.data[0][0]):'';
+    res?.data?setSchool(res?.data[0][1]):'';
+      res?.data?setClasse(res?.data[0][2]):'';
+      res?.data?setBus(res?.data[0][3]):'';
+
     });
   };
   
   useEffect(() => {
+    apis.tkn()
     getStudent();
     
   }, []);
 
+
+  //console.log('student', student);
   const formatter = new Intl.DateTimeFormat('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' });
   const bd = student?.birthDate ? formatter.format(new Date(student.birthDate)) : 'N/A'; // Ensure valid Date
   return (
-  
+    student?
         <div className="w-full mx-auto p-6 bg-white shadow-md rounded-lg">
+        
           <h1 className="text-2xl font-semibold text-blue-700 mb-6">Bonjour,{student?.fullName}</h1>
           
           <div className="bg-blue-50 p-4 rounded-t-lg">
@@ -76,10 +88,10 @@ function page() {
               
               <div className="contents">
               <div>  <p className="text-sm font-semibold text-gray-600">Etablissement</p>
-                <p className="text-sm text-gray-800">{student?.school}</p></div>
+                <p className="text-sm text-gray-800">{school}</p></div>
                 <div className="">
                 <p className="text-sm font-semibold text-gray-600">Classe</p>
-                <p className="text-sm text-gray-800">{student?.classe?.className || "pas determiner"}</p>
+                <p className="text-sm text-gray-800">{classe || "pas determiner"}</p>
                 </div>
               </div>
               
@@ -93,10 +105,21 @@ function page() {
                   <p className="text-sm text-gray-800">Province: {student?.dp}</p>
                 </div>
               </div>
+{bus?
+              <div className="contents">
+                <div>
+                  <p className="text-sm font-semibold text-gray-600">School Bus</p>
+                  <p className="text-sm text-gray-800">{bus}</p>
+                </div>
+              </div>:''}
             </div>
           </div>
-          <Password />
-        </div>
+          <div className=""><Password /></div>
+          
+        
+        </div> :
+        <div className='w-full h-screen flex justify-center items-center align-middle mt-1/2'>
+         <Atom color="#e6e250" size="large" text="NlSchool" textColor=""  /></div>
     
     
     

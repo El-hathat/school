@@ -13,6 +13,7 @@ function page() {
   };
   
   useEffect(() => {
+    apis.tkn()
     getMatiere();
     
   }, []);

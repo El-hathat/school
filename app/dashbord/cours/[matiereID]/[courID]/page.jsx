@@ -1,13 +1,20 @@
 'use client'
 import apis from '@/app/utils/apis';
-import { CloudDownload, MessageCircleMore } from 'lucide-react'
-import React, {  useEffect, useState } from 'react'
+import { CircleX, CloudDownload, MessageCircleMore, MessageCirclePlus } from 'lucide-react'
+import React, {  useEffect, useRef, useState } from 'react'
+import { saveAs } from 'file-saver';
+import { useRouter } from 'next/navigation';
 
 
 function page({params :{courID}}) {
 
-  
-  const[currentCour,setCurrentCour]=useState({})
+  const [replay, setReplay] = useState();
+  const [inputHidden, setInputHidden] = useState(true);
+  const [parentCmt, setparentCmt] = useState("null");
+  const [msgChange,setmsgChange]=useState()
+const msg=useRef()
+const route=useRouter()
+  const[currentCour,setCurrentCour]=useState()
   const [prof, setProf] = useState();
 
   const getCours = () => {
@@ -20,13 +27,61 @@ function page({params :{courID}}) {
       
     });
   };
+
+
+  const handleComment = () => {
+    apis.tkn();
+    const data = {
+      commentID: null,
+      message: msg?.current?.value,
+      creationDate: new Date(),
+      likeCount: 0,
+      sousComment: replay ? true : false,
+      replayto: replay,
+      student: null,
+      teacher: null,
+      replies: []
+    };
+    const email = localStorage.getItem("std");
+  apis.tkn()
+    apis.addComment2Cours(courID, email, parentCmt, data).then(res =>{ console.log("add comment2Cours", res);getCours();});
+    
+    setReplay(null);
+    setparentCmt("null");
+    msg.current.value = "";
+    
+    setInputHidden(true);
+  };
+
   
   useEffect(() => {
+    apis.tkn()
     getCours();
     
   }, []);
 
-
+  const handleDownload = async () => {
+  //  console.log("file url :",currentCour?.file)
+    try {
+      // Appel pour récupérer l'image
+      
+      const fileUrl = currentCour?.file; // L'URL de l'image
+  
+      if (fileUrl) {
+        // Créez un blob depuis l'URL si nécessaire
+        const blob = await fetch(fileUrl).then(res => res.blob());
+  
+        // Utilisez FileSaver.js pour sauvegarder l'image
+        saveAs(blob, file.split('/').pop()); // Téléchargez l'image
+      } else {
+        console.log('Erreur: URL d\'image invalide');
+      }
+    } catch (error) {
+      //location.href(currentCour?.file+"")
+      route.push(currentCour?.file)
+    //  console.error('Erreur lors de la récupération ou du téléchargement de l\'image :', error);
+    }
+  };
 
   const formatter = new Intl.DateTimeFormat('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' ,hour:'2-digit',minute:'2-digit' });
 
@@ -40,21 +95,21 @@ function page({params :{courID}}) {
 
     <span className="text-sm font-light text-gray-600 dark:text-gray-400">{currentCour?.pubDate ? formatter.format(new Date(currentCour?.pubDate)) : 'N/A'}</span>
     </div>
-    <button className="text-sm font-light text-gray-600 dark:text-gray-400 flex flex-col items-center"><CloudDownload />Telecharger</button>
+    <button className="text-sm font-light text-gray-600 dark:text-gray-400 flex flex-col items-center" onClick={()=>handleDownload()}><CloudDownload />Telecharger</button>
   </div>
 <div className="flex flex-col-reverse  lg:flex-row  border-2 border-gray-200  border-solid p-2">
-  <div className="  flex  flex-row gap-x-3 items-center lg:flex-col">
-    <img
+  <button className="  flex  flex-row gap-x-3 items-center lg:flex-col "  onClick={()=>handleDownload()}>
+  <div className="p-5">  <img
       alt=""
-      src="https://images.unsplash.com/photo-1609557927087-f9cf8e88de18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
-      className="aspect-square h-12 w-12 rounded-sm md:h-24 lg:h-40 md:w-36 lg:w-60 object-cover lg:rounded-lg "
-    />
-    <a href="#">
+      src='/images/pdf.png'
+      className=" h-12 w-12 rounded-sm md:h-24 lg:h-40 md:w-36 lg:w-60 object-contain lg:rounded-lg "
+    /></div>
+    <div >
         <h5 className="font-bold uppercase text-gray-900">
           {currentCour?.matName}
         </h5>
-      </a>
-  </div>
+      </div>
+  </button>
 
   <div className="flex flex-1 flex-col justify-between">
     <div className="border-s border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
@@ -68,106 +123,107 @@ function page({params :{courID}}) {
     </div>
 
 
-<div className=" flex flex-col gap-1 mt-2">
+{//############################
+}
+
+<div className="border-t pt-4 mb-4">
+      <div className=" flex flex-row justify-between px-3">  <h2 className="text-sm font-semibold mb-2">commentaire ajouté au Cours</h2>
+      <button onClick={()=>{setInputHidden(false)}}><MessageCirclePlus /></button></div>
+        
+
+
+
+
+
+<div className="flex flex-col">
+
 { Array.isArray(currentCour?.comments) ? currentCour?.comments?.map((item) => (
 item?.sousComment==false?  <div className="flex flex-col">
   <div className="flex items-start space-x-3 p-4 bg-white rounded-lg">
-  <img
-    src="https://plus.unsplash.com/premium_photo-1682089892133-556bde898f2c?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    alt="User avatar"
-    className="w-10 h-10 rounded-full cover "
-  />
+  {item?.student!=null&&item?.student?.profil || item?.teacher!=null&&item?.teacher?.profil ?<img className="w-10 h-10 rounded-full cover" src={item?.student==null?item?.teacher?.profil:item?.student?.profil} alt="avatar"/>:
+          <div className="w-10 h-10 min-w-10 min-h-10  bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-medium">
+            {item?.student==null?item?.teacher?.fullName?.charAt(0).toUpperCase():item?.student?.fullName?.charAt(0).toUpperCase()}
+          </div>
+    }
   <div className="flex-1">
     <div className="bg-gray-100 p-3 rounded-lg shadow">
       <h3 className="font-bold text-sm mb-1">{item?.student==null?item?.teacher?.fullName:item?.student?.fullName}</h3>
       <p className="text-xs lg text-sm" >
-        {item?.message}
+      {item?.message}
       </p>
     </div>
     <div className="flex items-center justify-between space-x-2 mt-2 text-sm text-gray-500">
     <div className='flex gap-3'> <span>{item?.creationDate ? formatter.format(new Date(item?.creationDate)) : 'N/A'}</span>
-      <button className="font-semibold">J'aime</button>
-      <button className="font-semibold" >Repondre</button></div> 
-      <span className="flex items-center">
-        <svg className="w-4 h-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
-          <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
-        </svg>
-        {item?.likeCount}
-      </span>
+      
+      <button className="font-semibold" onClick={()=>{setReplay(item?.student==null?item?.teacher?.fullName:item?.student?.fullName);setparentCmt(item?.commentID),setInputHidden(false)}}>Repondre</button></div> 
+      
     </div>
   </div>
     </div>
-
+<div className=" pl-5">
     { Array.isArray(item?.replies) ? item?.replies?.map((item1) => (
-  item1?.sousComment?<div className="flex items-start space-x-3 p-4 bg-white rounded-lg ml-10">
-  <img
-    src="https://plus.unsplash.com/premium_photo-1682089892133-556bde898f2c?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    alt="User avatar"
-    className="w-10 h-10 rounded-full cover "
-  />
+  item1?.sousComment?<div className="flex items-start space-x-3 p-4 bg-transparent rounded-lg ml-10" >
+  {item1?.student!=null&&item1?.student?.profil || item1?.teacher!=null&&item1?.teacher?.profil ?<img className="w-10 h-10 rounded-full cover" src={item?.student==null?item?.teacher?.profil:item?.student?.profil} alt="avatar"/>:
+          <div className="w-10 h-10 min-w-10 min-h-10  bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-medium">
+            {item1?.student==null?item1?.teacher?.fullName?.charAt(0).toUpperCase():item1?.student?.fullName?.charAt(0).toUpperCase()}
+          </div>
+    }
   <div className="flex-1">
-    <div className="bg-gray-100 p-3 rounded-lg shadow">
+    <div className="bg-gray-100 p-3 rounded-lg shadow ">
       <h3 className="font-bold text-sm mb-1">{item1?.student==null?item1?.teacher?.fullName:item1?.student?.fullName}</h3>
-      <p className="text-xs lg text-sm" >
-        {item1?.message}
+      <p className="text-xs lg text-sm flex flex-row flex-wrap" >
+      <p className='font-bold text-md italic text-blue-900 pr-2'>{item1.replayto}</p>  <p>{item1?.message}</p>
       </p>
     </div>
     <div className="flex items-center justify-between space-x-2 mt-2 text-sm text-gray-500">
     <div className='flex gap-3'> <span>{item1?.creationDate ? formatter.format(new Date(item1?.creationDate)) : 'N/A'}</span>
-      <button className="font-semibold">J'aime</button>
-      <button className="font-semibold" >Repondre</button></div> 
-      <span className="flex items-center">
-        <svg className="w-4 h-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
-          <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
-        </svg>
-        {item1?.likeCount}
-      </span>
+    
+      <button className="font-semibold" onClick={()=>{setReplay(item1?.student==null?item1?.teacher?.fullName:item1?.student?.fullName);setparentCmt(item?.commentID),setInputHidden(false)}}>Repondre</button></div> 
+      
     </div>
   </div>
     </div>:<></>
- )) : <></> }
+ )) : <></> }</div>
     </div>:<></>
  )) : <p>No data available</p> }
-    </div>
+
+
+
+</div>
 
 
 
 
 
-
-
-<div className="w-full mx-auto lg:p-4 p-1 bg-gray-50 rounded-lg mt-4">
-      <div className="flex items-center gap-2 mb-4">
-        <svg className="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-        </svg>
-        <h2 className="text-sm font-light lg:text-lg lg:font-semibold text-gray-700">Commentaires ajoutés au cours</h2>
-      </div>
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 min-w-10 min-h-10  bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-medium">
-          U
-        </div>
-        <div className="relative flex-grow">
-          <input 
+        <div className={`${inputHidden?`hidden`:`flex`}  items-center space-x-3 fixed bottom-0 w-5/6 h-16 lg:h-24 px-4 mx-0 rounded-md bg-gray-200`}>
+        <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white">
+            L
+          </div>
+          <div className='w-full'>
+          <div className={`w-fit rounded-lg pl-3 pr-3 bg-green-400 ${!replay?`hidden`:``}`}>  <input type="text" className='bg-transparent' readOnly value={replay} /><button on onClick={()=>{setReplay(null);setparentCmt("null")}}>X</button></div>
+          <input
+          onChange={()=>setmsgChange(msg?.current?.value)}
             type="text"
-            className="w-full text-xs lg:text-lg py-2 pl-3 pr-10 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             placeholder="Ajouter un commentaire au cours..."
-          />
-          <button 
-            className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-            aria-label="Envoyer le commentaire"
-          >
-            
-            <svg className="w-5 h-5 min-w-5 min-h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            className="flex-grow p-2 border rounded-md w-full"
+            ref={msg}
+          /></div>
+          {msgChange?
+          <button className="text-gray-400 hover:text-gray-600" onClick={()=>handleComment()}>
+            <span className="sr-only">Send comment</span>
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
             </svg>
-          </button>
-          
+          </button>:
+          <button className="text-gray-400 hover:text-gray-600" onClick={()=>setInputHidden(true)}>
+          <span className="sr-only">hide</span>
+          <CircleX />
+        </button>}
         </div>
-        <div className="flex flex-row"><MessageCircleMore />({currentCour?.comments?.length})</div>
-        
       </div>
-    </div>
+
+{//###############################
+}
 </div>
       
       </div>

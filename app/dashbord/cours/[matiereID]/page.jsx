@@ -3,19 +3,38 @@ import apis from '@/app/utils/apis';
 import { Check, CloudDownload, MessageCircleMore } from 'lucide-react'
 import React, { useEffect, useRef, useState } from 'react'
 
-
+import { saveAs } from 'file-saver';
+import { useRouter } from 'next/navigation';
 function page({params: {matiereID}}) {
+  const route=useRouter()
+  const [msgChange,setmsgChange]=useState()
+  const msg=useRef()
 
-  const texteRef = useRef(null); 
-  const [copied, setCopied] = useState(false); 
+  const handleComment = (id) => {
+    apis.tkn();
+    const data = {
+      commentID: null,
+      message: msgChange,
+      creationDate: new Date(),
+      likeCount: 0,
+      sousComment:false,
+      replayto: "",
+      student: null,
+      teacher: null,
+      replies: []
+    };
+    const email = localStorage.getItem("std");
+  apis.tkn()
+    apis.addComment2Cours(id, email, null, data).then(res =>{ console.log("add comment2Cours", res);getCours();});
+    
 
-  const copierTexte = () => {
-    texteRef.current.select(); 
-    document.execCommand('copy'); 
-    window.getSelection().removeAllRanges(); 
-    setCopied(true); 
-    setTimeout(() => setCopied(false), 4000);
+    msg.current.value = "";
+    
+    
   };
+
+
+
 
   
 
@@ -28,7 +47,7 @@ function page({params: {matiereID}}) {
       res?.data?.forEach(item => {
         if (item?.matID == matiereID) {
           setCours(item?.cours);
-          setProf(item?.teacher?.fullName);
+          setProf(item?.teacher);
         }
       });
 
@@ -37,13 +56,35 @@ function page({params: {matiereID}}) {
   };
   
   useEffect(() => {
+    apis.tkn()
     getCours();
     
   }, []);
 
   const formatter = new Intl.DateTimeFormat('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' ,hour:'2-digit',minute:'2-digit' });
 
-
+  const handleDownload = async (currentCour) => {
+    //  console.log("file url :",currentCour?.file)
+      try {
+        // Appel pour récupérer l'image
+        
+        const fileUrl = currentCour?.file; // L'URL de l'image
+    
+        if (fileUrl) {
+          // Créez un blob depuis l'URL si nécessaire
+          const blob = await fetch(fileUrl).then(res => res.blob());
+    
+          // Utilisez FileSaver.js pour sauvegarder l'image
+          saveAs(blob, file.split('/').pop()); // Téléchargez l'image
+        } else {
+          console.log('Erreur: URL d\'image invalide');
+        }
+      } catch (error) {
+        //location.href(currentCour?.file+"")
+        route.push(currentCour?.file)
+      //  console.error('Erreur lors de la récupération ou du téléchargement de l\'image :', error);
+      }
+    };
 
 
   return (
@@ -55,19 +96,11 @@ function page({params: {matiereID}}) {
 >
   <div className="bg-black/50 p-8 md:p-12 lg:px-16 lg:py-24">
     <div className="text-center ltr:sm:text-left rtl:sm:text-right">
-      <h2 className="text-2xl font-bold text-white sm:text-3xl md:text-5xl">{matiereID}</h2>
+      <h2 className="text-2xl font-bold text-white sm:text-3xl md:text-5xl">{cours?.length} Cours</h2>
 
       
 
-      <div className="flex items-center justify-between w-full mt-5 gap-x-2">
-                    <input type="text" ref={texteRef} value="4ijkmya" className="flex-1 block h-10 px-4 text-sm text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
-                    
-                    <button onClick={copierTexte} className="rounded-md sm:block p-1.5 text-gray-700 bg-white border border-gray-200 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring transition-colors duration-300 hover:text-blue-500 dark:hover:text-blue-500">
-                      {copied?<Check/>:  <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                        </svg>}
-                    </button>
-                </div>
+      
     </div>
   </div>
 </section>
@@ -76,27 +109,33 @@ function page({params: {matiereID}}) {
   <div  className="w-full lg:px-8 px-3 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800" key={cle}>
   <div className="flex items-center justify-between">
     <div className=" block">
-  <div className="flex items-center px-5">
-          <img className="object-cover ml-[-10%] w-10 h-10 mx-4 rounded-full sm:block" src="https://images.unsplash.com/photo-1502980426475-b83966705988?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=40&q=80" alt="avatar"/>
-          <a className="font-bold text-gray-700 cursor-pointer dark:text-gray-200" tabindex="0" role="link">{prof}</a>
+  <div className="flex items-center px-5 gap-2">
+          {prof?.profil?<img className="object-cover ml-[-10%] w-10 h-10 mx-4 rounded-full sm:block" src={prof?.profil} alt="avatar"/>:
+          <div className="w-10 h-10 min-w-10 min-h-10  bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-medium">
+            {prof?.fullName?.charAt(0).toUpperCase()}
+          </div>
+    }
+          <a className="font-bold text-gray-700 cursor-pointer dark:text-gray-200" tabindex="0" role="link">{prof?.fullName}</a>
       </div> 
       <span className="text-sm font-light text-gray-600 dark:text-gray-400">{item?.pubDate ? formatter.format(new Date(item.pubDate)) : 'N/A'}</span>
       </div>
-      <button className="text-sm font-light text-gray-600 dark:text-gray-400 flex flex-col items-center"><CloudDownload />Telecharger</button>
+      <a href={item?.file} className="text-sm font-light text-gray-600 dark:text-gray-400 flex flex-col items-center" onClick={()=>handleDownload(item)}><CloudDownload />Telecharger</a>
     </div>
   <div className="flex flex-col-reverse  lg:flex-row  ">
-    <div className="  flex  flex-row gap-x-3 items-center lg:flex-col">
-      <img
-        alt=""
-        src="https://images.unsplash.com/photo-1609557927087-f9cf8e88de18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
-        className="aspect-square h-12 w-12 rounded-sm md:h-24 lg:h-40 md:w-36 lg:w-60 object-cover lg:rounded-lg "
-      />
-      <a href="#">
+    <button className="  flex  flex-row gap-x-3 items-center lg:flex-col" onClick={()=>handleDownload(item)}>
+    <div className="p-5">  <img
+      alt=""
+      src='/images/pdf.png'
+      className=" h-12 w-12 rounded-sm md:h-24 lg:h-40 md:w-36 lg:w-60 object-contain lg:rounded-lg "
+    /></div>
+      <div >
           <h5 className="font-bold uppercase text-gray-900">
+          
           {item?.matName}
+          
           </h5>
-        </a>
-    </div>
+        </div>
+    </button>
   
     <div className="flex flex-1 flex-col justify-between">
       <div className="border-s border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
@@ -117,11 +156,17 @@ function page({params: {matiereID}}) {
           <h2 className="text-sm font-light lg:text-lg lg:font-semibold text-gray-700">Commentaires ajoutés au cours</h2>
         </div>
         <div className="flex items-center gap-3">
+          <div className="">
+          {localStorage?.getItem("profil")?<img className="object-cover ml-[-10%] w-10 h-10 mx-4 rounded-full sm:block" src={localStorage?.getItem("profil")} alt="avatar"/>:
           <div className="w-10 h-10 min-w-10 min-h-10  bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-medium">
-            U
+            {localStorage?.getItem("name")?.charAt(0).toUpperCase()}
+          </div>
+    }
           </div>
           <div className="relative flex-grow">
             <input 
+              ref={msg}
+              onChange={()=>setmsgChange(msg?.current?.value)}
               type="text"
               className="w-full text-xs lg:text-lg py-2 pl-3 pr-10 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="Ajouter un commentaire au cours..."
@@ -129,6 +174,7 @@ function page({params: {matiereID}}) {
             <button 
               className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
               aria-label="Envoyer le commentaire"
+              onClick={()=>handleComment(item?.coursID)}
             >
               
               <svg className="w-5 h-5 min-w-5 min-h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -137,7 +183,7 @@ function page({params: {matiereID}}) {
             </button>
             
           </div>
-          <a href={'/dashbord/cours/'+matiereID+'/part1Physic'} className="flex flex-row"><MessageCircleMore />(22)</a>
+          <a href={'/dashbord/cours/'+matiereID+'/'+item?.coursID} className="flex flex-row"><MessageCircleMore />({item?.comments?.length})</a>
           
         </div>
       </div>

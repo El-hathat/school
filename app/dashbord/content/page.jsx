@@ -1,14 +1,57 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { ArrowRight, DownloadCloud, Medal, Menu } from 'lucide-react'
+import { ArrowRight, CalendarOff, DownloadCloud, Medal, Menu, NotebookPen, NotepadText } from 'lucide-react'
 import SideBar from '../sideBar/SideBar'
+import apis from '@/app/utils/apis'
 
 
 export default function page() {
-  const [currentMonth, setCurrentMonth] = useState('January')
-  const [currentYear, setCurrentYear] = useState(2022)
+  const [stat,setStat]=useState()
+  const [score,setScore]=useState()
+  const [actualites,setActualites]=useState();
 
+  const getScore=()=>{
+apis.getScoreByStudent().then((res)=>{
+  setScore(res?.data)
+  //console.log('score1',res.data)
+
+})
+}
+
+const getActualites=()=>{
+  apis.getActualites().then((res)=>{
+    setActualites(res?.data)
+    //console.log('score1',res.data)
+  
+  })
+  }
+const getStat=()=>{
+  apis.getStatistique().then((res)=>{
+    setStat(res?.data)
+    
+//console.log('stat1',res.data)
+  })
+  }
+
+useEffect(()=>{
+  apis.tkn()
+  getScore()
+  getStat()
+  getActualites()
+
+},[])
+console.log('score',score)
+console.log('stat',stat)
+
+
+const formatter = new Intl.DateTimeFormat('en-US', {
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+});
   return (
   <div>
 
@@ -21,31 +64,31 @@ export default function page() {
                   <h2 className="text-sm font-medium text-gray-500">Classement</h2>
                   <Medal />
                 </div>
-                <p className="mt-2 text-3xl font-semibold text-center">5</p>
+                <p className="mt-2 text-3xl font-semibold text-center">{score?score[0]:'-'}</p>
               </div>
 
               <div  className="bg-white p-6 rounded-lg shadow">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-sm font-medium text-gray-500">Teste du mois {new Date().getMonth()}</h2>
-                  <Medal />
-                </div>
-                <p className="mt-2 text-3xl font-semibold text-center">5</p>
-              </div>
-
-              <div  className="bg-white p-6 rounded-lg shadow">
-                <div className="flex items-center justify-between">
+                <a href='/dashbord/certificats' className="flex items-center justify-between">
                   <h2 className="text-sm font-medium text-gray-500">Certificats</h2>
-                  <Medal />
-                </div>
-                <p className="mt-2 text-3xl font-semibold text-center">5</p>
+                  <NotepadText />
+                </a>
+                <p className="mt-2 text-3xl font-semibold text-center">{score?score[1]:'-'}</p>
               </div>
 
               <div  className="bg-white p-6 rounded-lg shadow">
                 <div className="flex items-center justify-between">
                   <h2 className="text-sm font-medium text-gray-500">Devoirs Non-Remis</h2>
-                  <Medal />
+                  <NotebookPen />
                 </div>
-                <p className="mt-2 text-3xl font-semibold text-center">5 </p>
+                <p className="mt-2 text-3xl font-semibold text-center">{score?score[2]:'-'}</p>
+              </div>
+
+              <div  className="bg-white p-6 rounded-lg shadow">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-sm font-medium text-gray-500">Nombre d'absences</h2>
+                  <CalendarOff />
+                </div>
+                <p className="mt-2 text-3xl font-semibold text-center">{score?score[3]:'-'} </p>
               </div>
           
           </div>
@@ -53,73 +96,34 @@ export default function page() {
           <div className="mt-6 ">
           <div className="col-span-4 bg-white p-6 rounded-lg shadow">
               <h2 className="text-lg font-semibold mb-4">Statistiques</h2>
-              <div className="h-[200px] w-full bg-gray-100 flex items-end justify-between p-4">
-                {[1/3, 1/2, 1/4, 3/4, 2/3, 1/2].map((height, index) => (
-                  <div key={index} className="w-8 bg-purple-500" style={{height: `${height * 100}%`}}></div>
-                ))}
+              <div className="h-[200px] w-full bg-gray-100 flex items-end justify-evenly p-4">
+                {stat?stat.map((item, index) => (
+                  <div  key={index} className=" w-8 bg-purple-500 group hover:bg-purple-300" style={{height: `${((item?.note*100)/20)}%`}}>
+                  <div className='-rotate-90 relative top-1/2 text-md text-center min-w-8 text-white'>{item?.note}</div>
+                    <div className="z-10 absolute hidden group-hover:flex text-xs bg-gray-900 font-medium rounded-lg text-white px-4 py-2.5 duration-300 transition-colors focus:outline-none">
+            {item?.mat}
+        </div>
+        
+                  </div>
+                )):''}
               </div>
+              
             
             </div>
             
           </div>
 
-          <div className="mt-6 grid gap-6 md:grid-cols-2 ">
-            <div className="col-span-4 bg-white p-6 rounded-lg shadow">
-              <h2 className="text-lg font-semibold mb-4">Notes des exams</h2>
-              <div className="space-y-4">
-                {[
-                  { name: "Math", score: "18/20", time: "12/10/2024", grade: "Excellent"},
-                  { name: "Physic", score: "16/20", time: "12/10/2024", grade: "T.bien"},
-                  { name: "Geographie", score: "5/20", time: "12/10/2024", grade: "_"},
-                  { name: "Arabe", score: "11/20", time: "10/12/2024", grade: "Passable" },
-                ].map((student, index) => (
-                  <div key={index} className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
-                        <div>
-                        <p className="font-medium text-xs lg:text-md">{student.name}</p>
-                        <p className="text-sm text-gray-500 text-xs lg:text-md">{student.score}</p>
-                      </div>
-                    </div>
-                    <div className="text-sm text-gray-500 text-xs lg:text-md">{student.time}</div>
-                    <div className='text-xs lg:text-md'>{student.grade}</div>
-                  
-                  </div>
-                ))}
-              </div>
-            </div>
           
-              
-            </div>
           </div>
 
           <div className="mt-3 bg-white p-6 rounded-lg shadow ml-6 mr-6">
             <h2 className="text-lg font-semibold mb-4">Actualites du classe</h2>
-            <div className="space-y-4">
-              {[
-                {
-                  title: "Notice of Special Examinations of Semester Spring 2021",
-                  author: "prof 2",
-                },
-                {
-                  title: "Time Extension Notice of Semester Admission",
-                  author: "prof 3",
-                
-                },
-                {
-                  title: "COVID-19 Vaccination Survey October 2021",
-                  author: "Directeur",
-                  
-                },
-                {
-                  title: "Scholarship Viva Notice Spring 2021",
-                  author: "Deligue",
-                  
-                },
-              ].map((notice, index) => (
-                <div key={index} className="flex items-start space-x-4 shadow-sm">
+            <div className="space-y-8">
+              {actualites?.map((notice, index) => (
+                <div key={index} className="flex items-start space-x-4 shadow-sm ">
                   <div>
-                    <h3 className="font-medium text-xs lg:text-md">{notice.title}</h3>
-                    <p className="text-sm text-gray-500 text-xs lg:text-md">By - {notice.author}</p>
+                    <h3 className="font-medium text-xs lg:text-md space-y-4">{notice?.actualite}</h3>
+                    <p className="text-sm text-gray-400 text-xs lg:text-md">Pulier par - {notice?.teacher?.fullName} à {formatter.format(new Date(notice?.date))}</p>
                   </div>
                 </div>
               ))}

@@ -14,7 +14,7 @@ function Page() {
   };
 
   const getSoumissions = (matID) => {
-    apis.getSoumissionsByStudent('s123456789', matID).then((res) => {
+    apis.getSoumissionsByStudent(matID).then((res) => {
       setSoumissions((prev) => ({
         ...prev,
         [matID]: res?.data?.length || 0, // Store the number of soumissions for each matID
@@ -28,10 +28,11 @@ function Page() {
   }, []);
 
   useEffect(() => {
+    apis.tkn()
     // Once the matiere is loaded, fetch soumissions for each course
-    matiere.forEach((item) => {
+    {Array.isArray(matiere) && matiere.length > 0 ?   matiere.forEach((item) => {
       getSoumissions(item?.matID);
-    });
+    }):''}
   }, [matiere]);
 
   const formatter = new Intl.DateTimeFormat('en-US', {

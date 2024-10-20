@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import io from 'socket.io-client';
 import SimplePeer from 'simple-peer';
 import { MicIcon, VideoIcon, PhoneIcon, MessageSquareIcon, UsersIcon, MoreVerticalIcon, CircleUser } from "lucide-react"
+import apis from '@/app/utils/apis';
 
 const Page = () => {
   const [socket, setSocket] = useState(null);
@@ -11,6 +12,7 @@ const Page = () => {
   const userVideo = useRef();
 
   useEffect(() => {
+    apis.tkn()
     const socket = io('http://localhost:3000');  // Spécifiez l'URL du serveur Socket.IO
     setSocket(socket);
 

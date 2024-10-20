@@ -3,9 +3,6 @@ import apis from '@/app/utils/apis';
 import React, { useEffect, useState } from 'react'
 
 
-
-
-
 export default function page({params:{devoirByMat}}) {
 
   const [devoirs, setDevoirs] = useState([]);
@@ -21,6 +18,7 @@ export default function page({params:{devoirByMat}}) {
   
 
   useEffect(() => {
+    apis.tkn()
     getDevoirs(devoirByMat);
   }, []);
 
@@ -34,10 +32,11 @@ export default function page({params:{devoirByMat}}) {
     minute: '2-digit',
   });
 
-  return (
-    <a href={'/dashbord/devoirs/'+devoirByMat+'/devoir 1'} className="max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+  return (<>
+    {devoirs.map((assignment) => (
+    <a href={'/dashbord/devoirs/'+devoirByMat+'/'+assignment.devoirID} className="max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
       <ul className="divide-y divide-gray-200">
-        {devoirs.map((assignment) => (
+        
           <li key={assignment.devoirID} className="p-4 hover:bg-gray-50">
             <div className="flex items-center space-x-4">
               <div className="flex-shrink-0">
@@ -45,7 +44,7 @@ export default function page({params:{devoirByMat}}) {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
               </div>
-              <div className="flex flex-col lg:flex-row w-full justify-between">
+              <div className="flex flex-row lg:flex-row w-full justify-between">
                 <p className="text-sm font-medium text-gray-900 truncate">
                   {assignment?.devoirTitle}
                 </p>
@@ -56,8 +55,8 @@ export default function page({params:{devoirByMat}}) {
               </div>
             </div>
           </li>
-        ))}
+        
       </ul>
-    </a>
+    </a>))}</>
   )
 }

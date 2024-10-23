@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import React, { useEffect } from 'react'
 import circle from '@/public/images/circle.png'
-import logo from '@/public/images/logo.png'
+import logo from '@/public/images/logo2.png'
 import AOS from 'aos';
 import 'aos/dist/aos.css'
 function Footer() {
@@ -15,7 +15,7 @@ function Footer() {
     <div className="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
       <div className="sm:flex sm:items-center sm:justify-between">
         <div className="text-teal-600">
-        <Image src={logo} alt='' className='h-16 w-16 lg:w-[100px] lg:h-[100px]' data-aos="zoom-in-down"/>
+        <Image src={logo} alt='' className='h-16 w-auto lg:w-[100px] lg:h-[100px]' data-aos="zoom-in-down"/>
         </div>
         <nav aria-label="Global" className="hidden md:block" data-aos="zoom-in-down">
         <ul className="flex items-center gap-6 text-sm">

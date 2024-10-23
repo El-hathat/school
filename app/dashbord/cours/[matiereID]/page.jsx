@@ -115,7 +115,7 @@ function page({params: {matiereID}}) {
             {prof?.fullName?.charAt(0).toUpperCase()}
           </div>
     }
-          <a className="font-bold text-gray-700 cursor-pointer dark:text-gray-200" tabindex="0" role="link">{prof?.fullName}</a>
+          <a className="font-bold text-gray-700 cursor-pointer dark:text-gray-200" tabIndex="0" role="link">{prof?.fullName}</a>
       </div> 
       <span className="text-sm font-light text-gray-600 dark:text-gray-400">{item?.pubDate ? formatter.format(new Date(item.pubDate)) : 'N/A'}</span>
       </div>

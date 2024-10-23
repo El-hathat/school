@@ -4,11 +4,12 @@ import React from 'react'
 import logo from '@/public/images/logo2.png'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { jwtDecode } from "jwt-decode";
 
 function SideBar() {
   const router = useRouter();
   const deconnexion=()=>{
-    localStorage.setItem('token', null);
+    localStorage.removeItem("token");
     router.push('/');
   }
 
@@ -22,14 +23,14 @@ function SideBar() {
     </div>
 
     <div className="flex flex-col items-center mt-6 -mx-2">
-          {localStorage.getItem("profil")?<img className="object-cover w-24 h-24 mx-2 rounded-full" src={localStorage.getItem("profil")} alt="avatar" />
+          {jwtDecode(localStorage.getItem('token'))?.profil?<img className="object-cover w-24 h-24 mx-2 rounded-full" src={jwtDecode(localStorage.getItem('token'))?.profil} alt="avatar" />
 :
           <div className="w-10 h-10 min-w-10 min-h-10  bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-medium">
-            {localStorage.getItem("name")?.charAt(0).toUpperCase()}
+            {jwtDecode(localStorage.getItem('token'))?.name?.charAt(0).toUpperCase()}
           </div>
     }
-          <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200">{localStorage.getItem("name")}</h4>
-        <p className="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400">{localStorage.getItem("std").toUpperCase()}</p>
+          <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200">{jwtDecode(localStorage.getItem('token'))?.name}</h4>
+        <p className="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400">{jwtDecode(localStorage.getItem('token'))?.sub.toUpperCase()}</p>
     </div>
 
     <div className="flex flex-col justify-between flex-1 mt-6">

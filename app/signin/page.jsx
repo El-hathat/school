@@ -1,6 +1,6 @@
 'use client'
 import React, { useRef, useState } from 'react'
-import logo from '@/public/images/logo.png'
+import logo from '@/public/images/logo2.png'
 import circle from '@/public/images/circle.png'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation';
@@ -15,6 +15,7 @@ function page() {
   const [errorlog,setErrorlog]=useState(false)
   const [loadAppear,setLoadAppear]=useState(false)
 
+  localStorage.removeItem("token")
   const handleSubmit =  (e) => {
     e.preventDefault();
     setLoadAppear(true)
@@ -30,9 +31,6 @@ function page() {
       
       // Save token to localStorage
       localStorage.setItem('token', res?.data?.token);
-      localStorage.setItem('std', res?.data?.med?.email);
-      localStorage.setItem('profil', res?.data?.med?.profil);
-      localStorage.setItem('name', res?.data?.med?.fullName);
       router.push('/dashbord');
       console.log("Login successful");
     }
@@ -54,6 +52,7 @@ function page() {
     }
   };
   return (
+    
     <div   className='w-full  h-[100%]  absolute  lg:bg-no-repeat lg:bg-cover ' style={{backgroundImage: 'url(https://img.freepik.com/photos-gratuite/abstrait-bleu-art-enfume_53876-110800.jpg)'}}>
     <div className="bg-white w-full  h-full  absolute lg:bg-opacity-0">
       {loadAppear?<div className='w-full h-screen flex justify-center items-center align-middle mt-1/2'>
@@ -69,7 +68,7 @@ function page() {
     <div  className="w-full  max-w-sm mx-auto overflow-hidden bg-gray-500 bg-opacity-10 lg:bg-opacity-0  rounded-lg shadow-md  ">
     <div  className="px-6 py-4">
         <div  className="flex justify-center mx-auto">
-            <Image  className="w-[130px] h-[100px] " src={logo} alt=""/>
+            <Image  className="w-auto h-[100px] " src={logo} alt=""/>
         </div>
 
         <h3  className="mt-3 text-xl font-medium text-center text-gray-800  lg:text-white ">Avec nlSchool</h3>
@@ -101,7 +100,7 @@ function page() {
     <div  className="flex items-center justify-center py-4 text-center ">
         <span  className="text-sm text-gray-800  lg:text-white lg:text-white">j'ai pas un compte? </span>
 
-        <a href="#"  className="mx-2 text-sm font-bold text-[#ff8367]  hover:underline">creer un compte</a>
+        <a href="/signup"  className="mx-2 text-sm font-bold text-[#ff8367]  hover:underline">creer un compte</a>
     </div>
 </div>
 </div>

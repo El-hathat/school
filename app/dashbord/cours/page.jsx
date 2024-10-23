@@ -25,8 +25,9 @@ function page() {
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 m-6 '>
-  { Array.isArray(matiere) ? matiere.map((item) => (
+  { Array.isArray(matiere) ? matiere.map((item,index) => (
    <a
+   key={index}
      href={"/dashbord/cours/"+item?.matID}
      className="relative block overflow-hidden rounded-lg border shadow-md shadow-gray-500 border-gray-100 bg-white p-4 sm:p-6 lg:p-8"
    >

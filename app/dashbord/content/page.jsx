@@ -2,8 +2,9 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { ArrowRight, CalendarOff, DownloadCloud, Medal, Menu, NotebookPen, NotepadText } from 'lucide-react'
-import SideBar from '../sideBar/SideBar'
+import { jwtDecode } from "jwt-decode";
 import apis from '@/app/utils/apis'
+import { useRouter } from 'next/navigation';
 
 
 export default function page() {
@@ -11,6 +12,10 @@ export default function page() {
   const [score,setScore]=useState()
   const [actualites,setActualites]=useState();
 
+
+  if (!jwtDecode(localStorage.getItem('token'))) {
+    useRouter().push("/signin")
+  }
   const getScore=()=>{
 apis.getScoreByStudent().then((res)=>{
   setScore(res?.data)
@@ -39,6 +44,7 @@ useEffect(()=>{
   getScore()
   getStat()
   getActualites()
+  console.log("hitlir",jwtDecode(localStorage.getItem('token'))?.profil)
 
 },[])
 console.log('score',score)
@@ -52,6 +58,8 @@ const formatter = new Intl.DateTimeFormat('en-US', {
   hour: '2-digit',
   minute: '2-digit',
 });
+
+
   return (
   <div>
 

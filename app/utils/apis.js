@@ -1,5 +1,6 @@
 import axios from 'axios';
-
+import { jwtDecode } from "jwt-decode";
+import { useRouter } from 'next/navigation';
 const Url='http://localhost:8080'
 //const Url='https://nlschool-backend-1.onrender.com'
 // Making a GET request
@@ -12,16 +13,17 @@ const axiosCli=axios.create({
 var authent // Assurez-vous que le token est stocké après l'authentification
 var student
 var classe
+
 const tkn=()=> {
 authent={  headers: {
   'Authorization': `Bearer ${localStorage.getItem('token')}`,
   'Content-Type': 'application/json' // Spécifie que les données sont envoyées en JSON
 }}
 
+//const route=useRouter()
 
-
-  student=localStorage.getItem('std');
-  classe=localStorage.getItem('classe');
+  student=localStorage.getItem('token')?jwtDecode(localStorage.getItem('token'))?.sub:useRouter().push("/signin");
+  classe=localStorage.getItem('token')?jwtDecode(localStorage.getItem('token'))?.classe:useRouter().push("signin");
 
 }
 

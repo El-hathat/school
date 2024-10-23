@@ -137,15 +137,15 @@ const route=useRouter()
 
 <div className="flex flex-col">
 
-{ Array.isArray(currentCour?.comments) ? currentCour?.comments?.map((item) => (
-item?.sousComment==false?  <div className="flex flex-col">
+{ Array.isArray(currentCour?.comments) ? currentCour?.comments?.map((item,index1) => (
+item?.sousComment==false?  <div className="flex flex-col" key={index1}>
   <div className="flex items-start space-x-3 p-4 bg-white rounded-lg">
   {item?.student!=null&&item?.student?.profil || item?.teacher!=null&&item?.teacher?.profil ?<img className="w-10 h-10 rounded-full cover" src={item?.student==null?item?.teacher?.profil:item?.student?.profil} alt="avatar"/>:
           <div className="w-10 h-10 min-w-10 min-h-10  bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-medium">
             {item?.student==null?item?.teacher?.fullName?.charAt(0).toUpperCase():item?.student?.fullName?.charAt(0).toUpperCase()}
           </div>
     }
-  <div className="flex-1">
+  <div className="flex-1" >
     <div className="bg-gray-100 p-3 rounded-lg shadow">
       <h3 className="font-bold text-sm mb-1">{item?.student==null?item?.teacher?.fullName:item?.student?.fullName}</h3>
       <p className="text-xs lg text-sm" >
@@ -161,19 +161,19 @@ item?.sousComment==false?  <div className="flex flex-col">
   </div>
     </div>
 <div className=" pl-5">
-    { Array.isArray(item?.replies) ? item?.replies?.map((item1) => (
-  item1?.sousComment?<div className="flex items-start space-x-3 p-4 bg-transparent rounded-lg ml-10" >
+    { Array.isArray(item?.replies) ? item?.replies?.map((item1,index) => (
+  item1?.sousComment?<div className="flex items-start space-x-3 p-4 bg-transparent rounded-lg ml-10" key={index}>
   {item1?.student!=null&&item1?.student?.profil || item1?.teacher!=null&&item1?.teacher?.profil ?<img className="w-10 h-10 rounded-full cover" src={item?.student==null?item?.teacher?.profil:item?.student?.profil} alt="avatar"/>:
           <div className="w-10 h-10 min-w-10 min-h-10  bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-medium">
             {item1?.student==null?item1?.teacher?.fullName?.charAt(0).toUpperCase():item1?.student?.fullName?.charAt(0).toUpperCase()}
           </div>
     }
-  <div className="flex-1">
+  <div className="flex-1" >
     <div className="bg-gray-100 p-3 rounded-lg shadow ">
       <h3 className="font-bold text-sm mb-1">{item1?.student==null?item1?.teacher?.fullName:item1?.student?.fullName}</h3>
-      <p className="text-xs lg text-sm flex flex-row flex-wrap" >
+      <div className="text-xs lg text-sm flex flex-row flex-wrap" >
       <p className='font-bold text-md italic text-blue-900 pr-2'>{item1.replayto}</p>  <p>{item1?.message}</p>
-      </p>
+      </div>
     </div>
     <div className="flex items-center justify-between space-x-2 mt-2 text-sm text-gray-500">
     <div className='flex gap-3'> <span>{item1?.creationDate ? formatter.format(new Date(item1?.creationDate)) : 'N/A'}</span>
@@ -200,7 +200,7 @@ item?.sousComment==false?  <div className="flex flex-col">
             L
           </div>
           <div className='w-full'>
-          <div className={`w-fit rounded-lg pl-3 pr-3 bg-green-400 ${!replay?`hidden`:``}`}>  <input type="text" className='bg-transparent' readOnly value={replay} /><button on onClick={()=>{setReplay(null);setparentCmt("null")}}>X</button></div>
+          <div className={`w-fit rounded-lg pl-3 pr-3 bg-green-400 ${!replay?`hidden`:``}`}>  <input type="text" className='bg-transparent' readOnly value={replay} /><button onClick={()=>{setReplay(null);setparentCmt("null")}}>X</button></div>
           <input
           onChange={()=>setmsgChange(msg?.current?.value)}
             type="text"

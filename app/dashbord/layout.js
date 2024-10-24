@@ -66,8 +66,8 @@ apis.getNofificationsNotReading().then(res=>{
     }
   };
   
-   let route=document.location.href.split('/')
-   route=route.slice(4,)
+  //  let route=document.location.href.split('/')
+  //  route=route.slice(4,)
   
   return (
     
@@ -81,14 +81,14 @@ apis.getNofificationsNotReading().then(res=>{
         {/* Header */}
         <header className="bg-white p-4 shadow-sm  border-b-2 border-solid border-gray-200 h-[75px]" >
           <div className="flex items-center justify-between flex-row">
-          <div className="flex flex-row items-center  overflow-x-auto whitespace-nowrap hidden lg:flex ">
+          <div className="flex flex-row items-center  overflow-x-auto whitespace-nowrap  lg:flex ">
         <div><House/></div>  
-             {route.map((item,index)=>(
+             {/* {route.map((item,index)=>(
               <div className="flex flex-row gap-1 shadow-md shadow-gray-100" key={index}>
             <ChevronRight/>
             <p>{item}</p>
            </div>
-            ))} 
+            ))}  */}
 
             </div>
             

@@ -39,9 +39,9 @@ a optimiser votre parcours educatif avec nous.</p>
           />
         </div>
 
-        <button
-          type="submit"
-          className="group z-40 mt-4 flex w-full items-center justify-center gap-2 rounded-md bg-rose-600 px-5 py-3 text-white transition focus:outline-none focus:ring focus:ring-yellow-400 sm:mt-0 sm:w-auto lg:h-9"
+        <a
+        href='/signup'
+              className="group z-40 mt-4 flex w-full items-center justify-center gap-2 rounded-md bg-rose-600 px-5 py-3 text-white transition focus:outline-none focus:ring focus:ring-yellow-400 sm:mt-0 sm:w-auto lg:h-9"
         >
           <span className="text-sm font-medium"> S'inscrire </span>
 
@@ -59,7 +59,7 @@ a optimiser votre parcours educatif avec nous.</p>
               d="M17 8l4 4m0 0l-4 4m4-4H3"
             />
           </svg>
-        </button>
+        </a>
       </form>
 <Image src={circle}  alt="" className='hidden lg:flex ml-[85%] z-0 w-[50px] h-[50px]'/>
 </div>
@@ -84,8 +84,8 @@ a optimiser votre parcours educatif avec nous.</p>
           />
         </div>
 
-        <button
-          type="submit"
+        <a
+        href='/signup'
           className="group mt-4 flex w-full items-center justify-center gap-2 rounded-md bg-rose-600 px-5 py-3 text-white transition focus:outline-none focus:ring focus:ring-yellow-400 sm:mt-0 sm:w-auto lg:h-9"
         >
           <span className="text-sm font-medium"> S'inscrire </span>
@@ -104,7 +104,7 @@ a optimiser votre parcours educatif avec nous.</p>
               d="M17 8l4 4m0 0l-4 4m4-4H3"
             />
           </svg>
-        </button>
+        </a>
       </form>
 </section>
   

@@ -55,6 +55,7 @@ const getNofificationsNotReading=()=>axiosCli.get(`/notifications/isreading/${st
 const addLike=(id,like)=>axiosCli.get(`/comment/addLike/${id}/${like}`,authent)
 const getSoumission=(std,dv)=>axiosCli.get(`/devoir/getSoumission/${std}/${dv}`,authent)
 const setNotification=()=>axiosCli.get('/notifications/add/'+student,authent)
+const forgotMyPassword=(cne,tel,gmail)=>axiosCli.get(`/student/forgotpwd/${cne}/${tel}/${gmail}`)
 const addSoumission=(email,id,file)=>axiosCli.post('/devoir/upload/'+email+'/'+id,file,{  headers: {
   'Authorization': `Bearer ${localStorage.getItem('token')}`,
   'Content-Type': 'multipart/form-data', // Spécifie que les données sont envoyées en JSON
@@ -115,6 +116,7 @@ export default{
   getSoumission,
   addComment2Cours,
   getNofificationsNotReading,
+  forgotMyPassword,
   tkn
 
 }

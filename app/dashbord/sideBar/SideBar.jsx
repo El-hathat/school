@@ -3,15 +3,15 @@ import { BookCheck, BookOpenText, CalendarDays, FileChartColumn, LogOut, Noteboo
 import React from 'react'
 import logo from '@/public/images/logo2.png'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+//import { useRouter } from 'next/navigation'
 import { jwtDecode } from "jwt-decode";
 
 function SideBar() {
-  const router = useRouter();
-  const deconnexion=()=>{
-    localStorage.removeItem("token");
-    router.push('/');
-  }
+  // const router = useRouter();
+  // const deconnexion=()=>{
+  //   localStorage.removeItem("token");
+  //   router.push('/');
+  // }
 
   
   return (
@@ -84,10 +84,10 @@ function SideBar() {
                 <ScrollText />
                 <span className="mx-4 font-medium">Factures</span>
             </a>
-            <button onClick={()=>{deconnexion()}} className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700">
+            <a href='/' className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700">
                 <LogOut  />
                 <span className="mx-4 font-medium">Deconnexion</span>
-            </button>
+            </a>
 
 
         </nav>

@@ -1,141 +1,130 @@
-import React from 'react'
-import logo from '../../public/images/logo2.png'
-import Image from 'next/image'
+'use client'
+import React, { useState } from 'react';
+import axios from 'axios';
+import Image from 'next/image';
+import logo from '../../public/images/logo2.png';
+import { Calendar, CircleUserRound, Contact, Mail, MapPin, Phone, UserRound } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+
 function page() {
+  const [studentData, setStudentData] = useState({
+    fullName: '',
+    fatherName: '',
+    motherName: '',
+    birthDate: '',
+    tel: '',
+    guardianTel: '',
+    address: '',
+    genre: 'Garcon',
+    email: '',
+    profil: null, // For profile photo
+  });
+
+  // Handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setStudentData({ ...studentData, [name]: value });
+  };
+
+  // Handle file upload
+  const handleFileChange = (e) => {
+    setStudentData({ ...studentData, profil: e.target.files[0] });
+  };
+
+  // Submit form
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Create form data to handle image upload
+    const formData = new FormData();
+    Object.keys(studentData).forEach((key) => {
+      formData.append(key, studentData[key]);
+    });
+
+    try {
+      await axios.post('http://localhost:8080/student/registrer', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      alert('Étudiant ajouté avec succès');
+      useRouter().push("/")
+    } catch (error) {
+      console.error('Erreur lors de l\'ajout de l\'étudiant :', error);
+    }
+  };
+
   return (
-    <div>
-      <section class="bg-white dark:bg-gray-900">
-    <div class="container flex items-center justify-center min-h-screen px-6 mx-auto">
-        <form class="w-full max-w-md">
-            <div class="flex justify-center mx-auto">
-                <Image class="w-24 h-16 sm:h-8" src={logo} alt="logo"/>
+    <div className='w-full absolute lg:bg-no-repeat lg:bg-cover' style={{backgroundImage: 'url(https://img.freepik.com/photos-gratuite/abstrait-bleu-art-enfume_53876-110800.jpg)'}}>
+      <section className="dark:bg-gray-900">
+        <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
+          <form className="w-full max-w-md" onSubmit={handleSubmit}>
+            <div className="flex justify-center mx-auto">
+              <Image className="w-24 h-8 lg:h-full lg:w-full" src={logo} alt="logo"/>
             </div>
             
-            
-
-            <div class="relative flex items-center mt-8">
-                <span class="absolute">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                </span>
-
-                <input type="text" class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Nom Complet"/>
+            <div className="relative flex items-center mt-8">
+            <UserRound className="absolute left-3" color='#cccccc'/>
+              <input type="text" name="fullName" value={studentData.fullName} onChange={handleChange} className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11" placeholder="Nom Complet" />
             </div>
 
-            <div class="relative flex items-center mt-8">
-                <span class="absolute">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                </span>
-
-                <input type="text" class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Nom complet de pere"/>
+            <div className="relative flex items-center mt-8">
+            <UserRound className="absolute left-3" color='#cccccc'/>
+              <input type="text" name="fatherName" value={studentData.fatherName} onChange={handleChange} className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11" placeholder="Nom complet du père" />
             </div>
 
-            <div class="relative flex items-center mt-8">
-                <span class="absolute">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                </span>
-
-                <input type="text" class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Nom complet de mere"/>
+            <div className="relative flex items-center mt-8">
+            <UserRound className="absolute left-3" color='#cccccc'/>
+              <input type="text" name="motherName" value={studentData.motherName} onChange={handleChange} className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11" placeholder="Nom complet de la mère" />
             </div>
 
-            <div class="relative flex items-center mt-8">
-                <span class="absolute">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                </span>
-
-                <input type="Date" class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Date de naissance"/>
+            <div className="relative flex items-center mt-8">
+              <Calendar className="absolute left-3" color='#cccccc'/>
+              <input type="date" name="birthDate" value={studentData.birthDate} onChange={handleChange} className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11" />
             </div>
 
-            <div class="relative flex items-center mt-8">
-                <span class="absolute">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                </span>
-
-                <input type="tel" class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Telephone"/>
+            <div className="relative flex items-center mt-8">
+              <Phone className="absolute left-3" color='#cccccc'/>
+              <input type="tel" name="tel" value={studentData.tel} onChange={handleChange} className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11" placeholder="Téléphone" />
             </div>
 
-            <div class="relative flex items-center mt-8">
-                <span class="absolute">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                </span>
-
-                <input type="tel" class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Telephone du Pere"/>
+            <div className="relative flex items-center mt-8">
+              <Phone className="absolute left-3" color='#cccccc'/>
+              <input type="tel" name="guardianTel" value={studentData.guardianTel} onChange={handleChange} className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11" placeholder="Téléphone du père" />
             </div>
 
-            <div class="relative flex items-center mt-8">
-                <span class="absolute">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                </span>
-
-                <input type="text" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Adresse"/>
+            <div className="relative flex items-center mt-8">
+              <MapPin className="absolute left-3" color='#cccccc'/>
+              <input type="text" name="address" value={studentData.address} onChange={handleChange} className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11" placeholder="Adresse" />
             </div>
 
-            <div>
-  <label htmlFor="HeadlineAct" className="text-gray-400"> Genre </label>
-
-  <select
-    name="Genre"
-    id="HeadlineAct"
-    className="block w-full py-3 text-gray-400 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-  >
-    <option value="">selectionner un chois</option>
-    <option value="Garcon">Garcon</option>
-    <option value="Fille">Fille</option>
-
-  </select>
-</div>
-
-            <label for="dropzone-file" class="flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-lg cursor-pointer dark:border-gray-600 dark:bg-gray-900">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                </svg>
-
-                <h2 class="mx-3 text-gray-400">Profile Photo</h2>
-
-                <input id="dropzone-file" type="file" class="hidden" />
-            </label>
-
-            <div class="relative flex items-center mt-6">
-                <span class="absolute">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                </span>
-
-                <input type="text" class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address"/>
+            <div className="relative flex items-center mt-8">
+            <Contact className="absolute left-3" color='#cccccc'/>
+              <select name="genre" value={studentData.genre} onChange={handleChange} className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11">
+                <option value="Garcon">Garçon</option>
+                <option value="Fille">Fille</option>
+              </select>
+            </div>
+            <label className="absolute left-11 text-white mt-3">Photo de profil</label>
+            <div className="relative flex items-center mt-8">
+            <CircleUserRound className="absolute left-3" color='#cccccc'/>
+              <input type="file" onChange={handleFileChange} className="block w-full py-3 bg-white border-2 border-dashed rounded-lg px-11" />
+              
             </div>
 
-          
-
-            <div class="mt-6">
-                <button class="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                    Sign Up
-                </button>
-
-                <div class="mt-6 text-center ">
-                    <a href="#" class="text-sm text-blue-500 hover:underline dark:text-blue-400">
-                        Already have an account?
-                    </a>
-                </div>
+            <div className="relative flex items-center mt-6">
+            <Mail className="absolute left-3" color='#cccccc'/>
+              <input type="email" name="email" value={studentData.email} onChange={handleChange} className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11" placeholder="Email" />
             </div>
-        </form>
+
+            <button className="w-full px-6 py-3 mt-6 text-sm font-medium tracking-wide text-white bg-blue-500 rounded-lg">
+              S'nscrire
+            </button>
+          </form>
+        </div>
+      </section>
     </div>
-</section>
-    </div>
-  )
+  );
 }
 
-export default page
+export default page;

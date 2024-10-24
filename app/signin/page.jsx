@@ -15,16 +15,12 @@ function page() {
   const [errorlog,setErrorlog]=useState(false)
   const [loadAppear,setLoadAppear]=useState(false)
 
-  localStorage.removeItem("token")
+localStorage.clear()
   const handleSubmit =  (e) => {
     e.preventDefault();
     setLoadAppear(true)
-    try {
-      apis.getClasse(email?.current?.value).then((res)=>{
-        console.log(res?.data)
-        localStorage.setItem('classe',res?.data)
-      }
-      )
+  
+      
       apis.signin(email?.current?.value, password?.current?.value)
   .then((res) => {
     if (res.status === 200) {
@@ -47,9 +43,7 @@ function page() {
     }
   });
 
-    } catch (error) {
-      console.log('Login failed', error);
-    }
+  
   };
   return (
     
@@ -88,7 +82,7 @@ function page() {
             </div>
 {errorlog?<div className='text-red-600'>CNE ou mot de passe incorrect</div>:''}
             <div  className="flex items-center justify-between mt-4">
-                <a href="#"  className="text-sm text-gray-800  lg:text-white  hover:text-gray-800  lg:text-white">Mot de passe oublier?</a>
+                <a href="/forgotPassword"  className="text-sm text-gray-800  lg:text-white  hover:text-gray-800  lg:text-white">Mot de passe oublier?</a>
 
                 <button  type="submit"  className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#ff8367] rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                     Connexion

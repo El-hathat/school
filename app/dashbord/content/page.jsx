@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { ArrowRight, CalendarOff, DownloadCloud, Medal, Menu, NotebookPen, NotepadText } from 'lucide-react'
 import { jwtDecode } from "jwt-decode";

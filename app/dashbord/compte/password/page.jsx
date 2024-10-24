@@ -1,5 +1,7 @@
 'use client'
 import apis from '@/app/utils/apis'
+import sessionWork from '@/app/utils/sessionWork'
+import { jwtDecode } from 'jwt-decode'
 import { useRef, useState } from 'react'
 
 export default function Password() {
@@ -17,7 +19,7 @@ export default function Password() {
     } else {
       console.log("pwd sont egaux")
       apis.tkn()
-      apis.resetPassword(localStorage.getItem("std"),currentPassword.current.value,newPassword.current.value).then(res=>res?alert('Mot de passe changé avec succès!'):alert('Ancien mot de passe est incorrect !'))
+      apis.resetPassword(jwtDecode(sessionWork.getSessionValue("token"))?.sub,currentPassword.current.value,newPassword.current.value).then(res=>res?alert('Mot de passe changé avec succès!'):alert('Ancien mot de passe est incorrect !'))
   
       
     }

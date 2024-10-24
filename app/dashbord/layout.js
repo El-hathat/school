@@ -7,6 +7,7 @@ import { saveAs } from 'file-saver';
 import apis from "../utils/apis";
 import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/navigation";
+import sessionWork from "../utils/sessionWork";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -17,7 +18,7 @@ const inter = Inter({ subsets: ["latin"] });
 };
 
 export default function RootLayout({ children }) {
-   if(!localStorage?.getItem('token')) {
+   if(!sessionWork.getSessionValue('token')) {
     
     return useRouter().push("/signin")
     }else{
@@ -28,13 +29,13 @@ export default function RootLayout({ children }) {
   const menuHandle=()=>{
     setMenuOpen(!menuOpen)
   }
-  if(localStorage?.getItem("token")){
+  if(sessionWork.getSessionValue("token")){
   apis.tkn(),
 apis.getNofificationsNotReading().then(res=>{
-  console.log("notif",res?.data)
+
   setCountmsg(res?.data)
 })}
-  console.log("countcount: ",countmsg)
+
   const changeMenu=()=>{
     setTopHead(40-document.getElementById('content').scrollTop)
   //  console.log(document.getElementById('content').scrollTop,topHead)
@@ -71,7 +72,9 @@ apis.getNofificationsNotReading().then(res=>{
   
   return (
     
-      <div className={inter.className} >
+    <html lang="en">
+      
+    <body className={inter.className} >
       <div className="flex h-screen bg-gray-100">
     <div className='hidden lg:flex'><SideBar /></div>  
       <div className=' z-40 lg:z-auto absolute lg:hidden transition-[left] ease-in-out delay-100' style={menuOpen?{left:0}:{left:'-100%'}}>  <SideBar /> </div>
@@ -81,7 +84,7 @@ apis.getNofificationsNotReading().then(res=>{
         {/* Header */}
         <header className="bg-white p-4 shadow-sm  border-b-2 border-solid border-gray-200 h-[75px]" >
           <div className="flex items-center justify-between flex-row">
-          <div className="flex flex-row items-center  overflow-x-auto whitespace-nowrap  lg:flex ">
+          <div className="hidden flex-row items-center  overflow-x-auto whitespace-nowrap  lg:flex ">
         <div><House/></div>  
              {/* {route.map((item,index)=>(
               <div className="flex flex-row gap-1 shadow-md shadow-gray-100" key={index}>
@@ -93,10 +96,10 @@ apis.getNofificationsNotReading().then(res=>{
             </div>
             
             <div className="flex  items-center  -mx-2 lg:hidden">
-            {jwtDecode(localStorage.getItem('token'))?.profil?<img className="object-cover w-10 h-10 mx-2 rounded-full" src={jwtDecode(localStorage.getItem('token'))?.profil} alt="avatar" />
+            {jwtDecode(sessionWork.getSessionValue("token"))?.profil?<img className="object-cover w-10 h-10 mx-2 rounded-full" src={jwtDecode(sessionWork.getSessionValue("token"))?.profil} alt="avatar" />
 :
           <div className="w-10 h-10 min-w-10 min-h-10  bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-medium">
-            {jwtDecode(localStorage.getItem('token'))?.name?.charAt(0).toUpperCase()}
+            {jwtDecode(sessionWork.getSessionValue("token"))?.name?.charAt(0).toUpperCase()}
           </div>
     }
         
@@ -106,7 +109,7 @@ apis.getNofificationsNotReading().then(res=>{
       :<div className=" w-6 h-12 bg-[#ff8367] absolute top-[40px] left-[-4px] rounded-2xl shadow-md shadow-orange-500 border-solid border-2 pt-3 " onClick={menuHandle} >
         <ChevronRight color="#ffff" />
           </div>}
-        <h4 className="mx-2 mt-2 font-medium text-gray-800 ">{jwtDecode(localStorage.getItem('token'))?.name}</h4>
+        <h4 className="mx-2 mt-2 font-medium text-gray-800 ">{jwtDecode(sessionWork.getSessionValue("token"))?.name}</h4>
       </div>
             <div className="flex items-center space-x-4">
               <a href="/dashbord/notifications" className=" p-2 rounded-full hover:bg-gray-100 flex flex-row">
@@ -133,7 +136,8 @@ apis.getNofificationsNotReading().then(res=>{
         
         </div>
         </div>
-        </div>
+        </body>
+        </html>
       
   );}
 }

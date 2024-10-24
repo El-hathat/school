@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { jwtDecode } from "jwt-decode";
 import { useRouter } from 'next/navigation';
+import sessionWork from './sessionWork';
 const Url='http://localhost:8080'
 //const Url='https://nlschool-backend-1.onrender.com'
 // Making a GET request
@@ -16,14 +17,14 @@ var classe
 
 const tkn=()=> {
 authent={  headers: {
-  'Authorization': `Bearer ${localStorage.getItem('token')}`,
+  'Authorization': `Bearer ${sessionWork.getSessionValue("token")}`,
   'Content-Type': 'application/json' // Spécifie que les données sont envoyées en JSON
 }}
 
 //const route=useRouter()
 
-  student=localStorage.getItem('token')?jwtDecode(localStorage.getItem('token'))?.sub:useRouter().push("/signin");
-  classe=localStorage.getItem('token')?jwtDecode(localStorage.getItem('token'))?.classe:useRouter().push("signin");
+  student=sessionWork.getSessionValue("token")?jwtDecode(sessionWork.getSessionValue("token"))?.sub:useRouter().push("/signin");
+  classe=sessionWork.getSessionValue("token")?jwtDecode(sessionWork.getSessionValue("token"))?.classe:useRouter().push("signin");
 
 }
 
@@ -48,16 +49,16 @@ const getScoreByStudent=()=>axiosCli.get(`/student/score/${student}`,authent)
 const getStatistique=()=>axiosCli.get(`/student/statistique/${student}`,authent)
 const getActualites=()=>axiosCli.get(`/student/actualites/${classe}`,authent)
 const getACertificats=()=>axiosCli.get(`/student/certificats/${student}`,authent)
-const getClasse=(email)=>axiosCli.get(`/classes/${email}`,authent)
+const getClasse=()=>axiosCli.get(`/classes/${student}`,authent)
 const gettimeTable=()=>axiosCli.get(`/classes/timetable/${student}`,authent)
 const getNofifications=()=>axiosCli.get(`/notifications/${student}`,authent)
 const getNofificationsNotReading=()=>axiosCli.get(`/notifications/isreading/${student}`,authent)
 const addLike=(id,like)=>axiosCli.get(`/comment/addLike/${id}/${like}`,authent)
-const getSoumission=(std,dv)=>axiosCli.get(`/devoir/getSoumission/${std}/${dv}`,authent)
+const getSoumission=(dv)=>axiosCli.get(`/devoir/getSoumission/${student}/${dv}`,authent)
 const setNotification=()=>axiosCli.get('/notifications/add/'+student,authent)
 const forgotMyPassword=(cne,tel,gmail)=>axiosCli.get(`/student/forgotpwd/${cne}/${tel}/${gmail}`)
-const addSoumission=(email,id,file)=>axiosCli.post('/devoir/upload/'+email+'/'+id,file,{  headers: {
-  'Authorization': `Bearer ${localStorage.getItem('token')}`,
+const addSoumission=(id,file)=>axiosCli.post('/devoir/upload/'+student+'/'+id,file,{  headers: {
+  'Authorization': `Bearer ${lsessionWork.getSessionValue("token")}`,
   'Content-Type': 'multipart/form-data', // Spécifie que les données sont envoyées en JSON
 }})
 const resetPassword=(email,oldPassword,newPassword)=>axiosCli.post('/student/passwordUpdate',

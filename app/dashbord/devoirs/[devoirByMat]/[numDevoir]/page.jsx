@@ -1,6 +1,8 @@
 'use client'
 import apis from '@/app/utils/apis';
+import sessionWork from '@/app/utils/sessionWork';
 import { saveAs } from 'file-saver';
+import { jwtDecode } from 'jwt-decode';
 import { CircleX, CloudDownload, MessageCirclePlus } from 'lucide-react'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react';
@@ -48,7 +50,7 @@ const handleUpload = async () => {
   setUploading(true);
 
   try {
-    const response = await apis.addSoumission(localStorage.getItem("std"), devoir?.devoirID, formData);
+    const response = await apis.addSoumission(devoir?.devoirID, formData);
 
     if (response.status === 200) {
       setUploadResponse(`File uploaded successfully: ${response.data.fileName}`);
@@ -83,7 +85,7 @@ const handleComment = () => {
     teacher: null,
     replies: []
   };
-  const email = localStorage.getItem("std");
+  const email = jwtDecode(sessionWork.getSessionValue("token"))?.sub;
 
   apis.addComment(numDevoir, email, parentCmt, data).then(res => console.log("add comment", res));
   setReplay(null);
@@ -99,7 +101,7 @@ const handleComment = () => {
     getDevoirsById(numDevoir);
     
     getSoum()
-    console.log("ls: ",localStorage.getItem("student"))
+
   }, []);
 
   
@@ -112,7 +114,7 @@ const handleComment = () => {
   }
   const getSoum=() => {
     apis.tkn()
-    apis.getSoumission(localStorage.getItem("std"),numDevoir).then(res=>{
+    apis.getSoumission(numDevoir).then(res=>{
       setDvSm(res?.data)
       
         if (isImage(res?.data?.file)) {

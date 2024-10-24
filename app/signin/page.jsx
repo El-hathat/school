@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation';
 import apis from '../utils/apis'
 import { Atom } from 'react-loading-indicators'
+import sessionWork from '../utils/sessionWork'
 
 function page() {
 
@@ -15,7 +16,7 @@ function page() {
   const [errorlog,setErrorlog]=useState(false)
   const [loadAppear,setLoadAppear]=useState(false)
 
-localStorage.clear()
+  sessionWork.removeSession()
   const handleSubmit =  (e) => {
     e.preventDefault();
     setLoadAppear(true)
@@ -25,8 +26,8 @@ localStorage.clear()
   .then((res) => {
     if (res.status === 200) {
       
-      // Save token to localStorage
-      localStorage.setItem('token', res?.data?.token);
+      // Save token to session
+      sessionWork.setSessionValue('token', res?.data?.token)
       router.push('/dashbord');
       console.log("Login successful");
     }

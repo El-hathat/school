@@ -4,6 +4,8 @@ import { CircleX, CloudDownload, MessageCircleMore, MessageCirclePlus } from 'lu
 import React, {  useEffect, useRef, useState } from 'react'
 import { saveAs } from 'file-saver';
 import { useRouter } from 'next/navigation';
+import sessionWork from '@/app/utils/sessionWork';
+import { jwtDecode } from 'jwt-decode';
 
 
 function page({params :{courID}}) {
@@ -42,7 +44,7 @@ const route=useRouter()
       teacher: null,
       replies: []
     };
-    const email = localStorage.getItem("std");
+    const email=jwtDecode(sessionWork.getSessionValue("token"))?.sub;
   apis.tkn()
     apis.addComment2Cours(courID, email, parentCmt, data).then(res =>{ console.log("add comment2Cours", res);getCours();});
     

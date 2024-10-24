@@ -5,6 +5,7 @@ import { ArrowRight, CalendarOff, DownloadCloud, Medal, Menu, NotebookPen, Notep
 import { jwtDecode } from "jwt-decode";
 import apis from '@/app/utils/apis'
 import { useRouter } from 'next/navigation';
+import sessionWork from '@/app/utils/sessionWork';
 
 
 export default function page() {
@@ -13,7 +14,7 @@ export default function page() {
   const [actualites,setActualites]=useState();
 
 
-  if (!jwtDecode(localStorage.getItem('token'))) {
+  if (!jwtDecode(sessionWork.getSessionValue("token"))) {
     useRouter().push("/signin")
   }
   const getScore=()=>{
@@ -44,7 +45,7 @@ useEffect(()=>{
   getScore()
   getStat()
   getActualites()
-  console.log("hitlir",jwtDecode(localStorage.getItem('token'))?.profil)
+  console.log("hitlir",jwtDecode(sessionWork.getSessionValue("token"))?.profil)
 
 },[])
 console.log('score',score)

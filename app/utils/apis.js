@@ -56,6 +56,7 @@ const getNofificationsNotReading=()=>axiosCli.get(`/notifications/isreading/${st
 const addLike=(id,like)=>axiosCli.get(`/comment/addLike/${id}/${like}`,authent)
 const getSoumission=(dv)=>axiosCli.get(`/devoir/getSoumission/${student}/${dv}`,authent)
 const setNotification=()=>axiosCli.get('/notifications/add/'+student,authent)
+const delComment=(id)=>axiosCli.delete('/comment/delete/'+id,authent)
 const forgotMyPassword=(cne,tel,gmail)=>axiosCli.get(`/student/forgotpwd/${cne}/${tel}/${gmail}`)
 const addSoumission=(id,file)=>axiosCli.post('/devoir/upload/'+student+'/'+id,file,{  headers: {
   'Authorization': `Bearer ${lsessionWork.getSessionValue("token")}`,
@@ -118,6 +119,7 @@ export default{
   addComment2Cours,
   getNofificationsNotReading,
   forgotMyPassword,
+  delComment,
   tkn
 
 }

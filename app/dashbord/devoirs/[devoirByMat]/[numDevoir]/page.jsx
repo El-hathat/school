@@ -3,7 +3,7 @@ import apis from '@/app/utils/apis';
 import sessionWork from '@/app/utils/sessionWork';
 import { saveAs } from 'file-saver';
 import { jwtDecode } from 'jwt-decode';
-import { CircleX, CloudDownload, MessageCirclePlus } from 'lucide-react'
+import { CircleX, CloudDownload, MessageCirclePlus, Trash2 } from 'lucide-react'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react';
 
@@ -71,6 +71,16 @@ const getDevoirsById = (devoir) => {
     console.log('devoirs', res);
   });
 };
+
+
+const delComment=(id)=>{
+  const confirmed = window.confirm("Êtes-vous sûr de vouloir supprimer cet élément ?");
+  if (confirmed) {
+  apis.tkn();
+  apis.delComment(id).then(res=>{
+    res?getDevoirsById(numDevoir):"";
+  })}
+}
 
 const handleComment = () => {
   apis.tkn();
@@ -296,10 +306,10 @@ item?.sousComment==false?  <div className="flex flex-col">
       </p>
     </div>
     <div className="flex items-center justify-between space-x-2 mt-2 text-sm text-gray-500">
-    <div className='flex gap-3'> <span>{item?.creationDate ? formatter.format(new Date(item?.creationDate)) : 'N/A'}</span>
+    <div className='flex flex-row gap-3'> <span>{item?.creationDate ? formatter.format(new Date(item?.creationDate)) : 'N/A'}</span>
       
       <button className="font-semibold" onClick={()=>{setReplay(item?.student==null?item?.teacher?.fullName:item?.student?.fullName);setparentCmt(item?.commentID),setInputHidden(false)}}>Repondre</button></div> 
-      
+    {jwtDecode(sessionWork.getSessionValue("token"))?.sub==item?.student?.email || jwtDecode(sessionWork.getSessionValue("token"))?.sub==item?.teacher?.email?<div className="" onClick={()=>delComment(item?.commentID)}><Trash2 /></div>:<></>}
     </div>
   </div>
     </div>
@@ -319,10 +329,10 @@ item?.sousComment==false?  <div className="flex flex-col">
       </p>
     </div>
     <div className="flex items-center justify-between space-x-2 mt-2 text-sm text-gray-500">
-    <div className='flex gap-3'> <span>{item1?.creationDate ? formatter.format(new Date(item1?.creationDate)) : 'N/A'}</span>
+    <div className='flex flex-row gap-3'> <span>{item1?.creationDate ? formatter.format(new Date(item1?.creationDate)) : 'N/A'}</span>
     
       <button className="font-semibold" onClick={()=>{setReplay(item1?.student==null?item1?.teacher?.fullName:item1?.student?.fullName);setparentCmt(item?.commentID),setInputHidden(false)}}>Repondre</button></div> 
-      
+      {jwtDecode(sessionWork.getSessionValue("token"))?.sub==item1?.student?.email || jwtDecode(sessionWork.getSessionValue("token"))?.sub==item1?.teacher?.email?<div className="" onClick={()=>delComment(item1?.commentID)}><Trash2 /></div>:<></>}
     </div>
   </div>
     </div>:<></>

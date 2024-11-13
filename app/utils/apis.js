@@ -2,8 +2,8 @@ import axios from 'axios';
 import { jwtDecode } from "jwt-decode";
 import { useRouter } from 'next/navigation';
 import sessionWork from './sessionWork';
-const Url='http://localhost:8080'
-//const Url='https://nlschool-backend-1.onrender.com'
+//const Url='http://localhost:8080'
+const Url='https://nlschool-backend-1.onrender.com'
 // Making a GET request
 const axiosCli=axios.create({
   baseURL:Url,
@@ -59,7 +59,7 @@ const setNotification=()=>axiosCli.get('/notifications/add/'+student,authent)
 const delComment=(id)=>axiosCli.delete('/comment/delete/'+id,authent)
 const forgotMyPassword=(cne,tel,gmail)=>axiosCli.get(`/student/forgotpwd/${cne}/${tel}/${gmail}`)
 const addSoumission=(id,file)=>axiosCli.post('/devoir/upload/'+student+'/'+id,file,{  headers: {
-  'Authorization': `Bearer ${lsessionWork.getSessionValue("token")}`,
+  'Authorization': `Bearer ${sessionWork.getSessionValue("token")}`,
   'Content-Type': 'multipart/form-data', // Spécifie que les données sont envoyées en JSON
 }})
 const resetPassword=(email,oldPassword,newPassword)=>axiosCli.post('/student/passwordUpdate',

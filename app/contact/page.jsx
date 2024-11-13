@@ -1,5 +1,5 @@
 'use client'
-import { Mail, MapPin, Phone } from 'lucide-react'
+import { ArrowLeftCircle, Mail, MapPin, Phone } from 'lucide-react'
 import Image from 'next/image'
 import React, { useRef, useState } from 'react'
 import whatsapp from '@/public/icones/whatsapp.png'
@@ -49,6 +49,7 @@ function Page() {
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="container px-6 py-12 mx-auto">
+      <a href="/" className=' p-x-0 lg:hidden'><ArrowLeftCircle color='#ff8367' size='40px'/></a>
         <div>
           <p className="font-bold text-[#ff8367] dark:text-[#ff8367] text-2xl text-center">Contactez-nous</p>
           <h1 className="mt-2 text-2xl font-semibold text-gray-800 md:text-3xl dark:text-white">Restons en Contact avec l'Avenir de vos Enfants !</h1>

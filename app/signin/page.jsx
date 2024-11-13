@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import apis from '../utils/apis'
 import { Atom } from 'react-loading-indicators'
 import sessionWork from '../utils/sessionWork'
+import { ArrowLeftCircle } from 'lucide-react'
 
 function page() {
 
@@ -61,8 +62,9 @@ function page() {
     <div   className="hidden bg-cover lg:block lg:w-1/2" style={{backgroundImage: 'url(https://img.freepik.com/photos-premium/fille-est-assise-devant-ordinateur-mot-mathematiques-tableau-noir_1104772-4194.jpg)'}}></div>
 
     <div  className="w-full  max-w-sm mx-auto overflow-hidden bg-gray-500 bg-opacity-10 lg:bg-opacity-0  rounded-lg shadow-md  ">
-    <div  className="px-6 py-4">
-        <div  className="flex justify-center mx-auto">
+    <div  className="px-1 py-4">
+        <div  className="flex justify-between gap-x-6 mx-auto">
+          <a href="/"  className='lg:hidden'><ArrowLeftCircle color='#ff8367' size='50px'/></a>
             <Image  className="w-auto h-[100px] " src={logo} alt=""/>
         </div>
 

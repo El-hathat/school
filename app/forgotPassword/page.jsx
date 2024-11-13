@@ -1,5 +1,6 @@
 'use client'
 import apis from '@/app/utils/apis'
+import { ArrowLeftCircle } from 'lucide-react';
 import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
 
@@ -51,7 +52,9 @@ export default function ForgotPasswordPage() {
   return (
     <div className='w-full h-[100%] absolute lg:bg-no-repeat lg:bg-cover flex justify-center items-center'
          style={{ backgroundImage: 'url(https://img.freepik.com/photos-gratuite/abstrait-bleu-art-enfume_53876-110800.jpg)' }}>
-      <div className="container w-full h-screen lg:w-1/2 mx-auto p-6 bg-white rounded-lg shadow-md bg-opacity-30">
+        <div className="container w-full h-screen lg:w-1/2 mx-auto p-6 bg-white rounded-lg shadow-md bg-opacity-30">
+        <a href="/signin" className=' p-x-0 lg:hidden'><ArrowLeftCircle color='#ff8367' size='40px'/></a>
+  
         <h2 className="text-2xl font-bold text-center mb-6 text-orange-500">J'ai oublié le mot de passe</h2>
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div>

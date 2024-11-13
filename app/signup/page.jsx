@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
 import logo from '../../public/images/logo2.png';
-import { Calendar, CircleUserRound, Contact, Mail, MapPin, Phone, UserRound } from 'lucide-react';
+import { ArrowLeftCircle, Calendar, CircleUserRound, Contact, Mail, MapPin, Phone, UserRound } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 function page() {
@@ -42,7 +42,7 @@ function page() {
     });
 
     try {
-      await axios.post('http://localhost:8080/student/registrer', formData, {
+      await axios.post('https://nlschool-backend-1.onrender.com/student/registrer', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -59,10 +59,13 @@ function page() {
       <section className="dark:bg-gray-900">
         <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
           <form className="w-full max-w-md" onSubmit={handleSubmit}>
+            <div className="flex">
+            <a href="/signin" className='lg:hidden'><ArrowLeftCircle color='#ff8367' size='40px'/></a>
             <div className="flex justify-center mx-auto">
+            
               <Image className="w-24 h-8 lg:h-full lg:w-full" src={logo} alt="logo"/>
             </div>
-            
+            </div>
             <div className="relative flex items-center mt-8">
             <UserRound className="absolute left-3" color='#cccccc'/>
               <input type="text" name="fullName" value={studentData.fullName} onChange={handleChange} className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11" placeholder="Nom Complet" />

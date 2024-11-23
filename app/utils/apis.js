@@ -2,7 +2,7 @@ import axios from 'axios';
 import { jwtDecode } from "jwt-decode";
 import { useRouter } from 'next/navigation';
 import sessionWork from './sessionWork';
-const Url='http://192.168.199.1:8080'
+const Url='http://localhost:8080'
 //const Url='https://nlschool-backend-1.onrender.com'
 // Making a GET request
 const axiosCli=axios.create({

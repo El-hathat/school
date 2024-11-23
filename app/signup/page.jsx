@@ -42,7 +42,7 @@ function page() {
     });
 
     try {
-      await axios.post('http://localhost:8080/student/registrer', formData, {
+      await axios.post('http://192.168.199.1:8080/student/registrer', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

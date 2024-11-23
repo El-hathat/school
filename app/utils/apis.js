@@ -2,8 +2,8 @@ import axios from 'axios';
 import { jwtDecode } from "jwt-decode";
 import { useRouter } from 'next/navigation';
 import sessionWork from './sessionWork';
-//const Url='http://localhost:8080'
-const Url='https://nlschool-backend-1.onrender.com'
+const Url='http://localhost:8080'
+//const Url='https://nlschool-backend-1.onrender.com'
 // Making a GET request
 const axiosCli=axios.create({
   baseURL:Url,

@@ -42,7 +42,7 @@ function page() {
     });
 
     try {
-      await axios.post('https://nlschool-backend-1.onrender.com/student/registrer', formData, {
+      await axios.post('http://localhost:8080/student/registrer', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

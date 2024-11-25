@@ -1,6 +1,7 @@
 'use client'
 import apis from '@/app/utils/apis'
 import React, { useEffect, useRef, useState } from 'react'
+import PayPalButton from './pay/paypal/payPalButton'
 
 
 export default function page() {
@@ -48,7 +49,10 @@ useEffect(()=>{
     return new Date(dateString).toLocaleDateString('fr-FR')
   }
 
-  // Fonction pour obtenir la classe CSS du badge selon l'état
+  const handleSuccess = (order) => {
+    console.log('Payment successful!', order);
+    // Handle post-payment logic, e.g., save order info to DB
+  };
 
   return (
     <div className="w-full  mx-auto bg-white shadow-md rounded-lg overflow-hidden">
@@ -81,7 +85,8 @@ useEffect(()=>{
                   <td className="py-2 px-4 border-b">{new Date(facture.billDate).getMonth()} / {new Date(facture.billDate).getFullYear()}</td>
                   <td className="py-2 px-4 border-b">{formatDate(facture.limiteDate)}</td>
                   <td className="py-2 px-4 border-b">{facture.montant.toFixed(2)} DH</td>
-                  <td className={`w-24 py-2 px-4 border-b ${facture?.etat=='Payee'?'bg-green-500':'bg-red-500'}`}>{facture.etat}</td>
+                  {facture?.etat=='Payee'?<td className={`w-24 py-2 px-4 border-b bg-green-500`}>Facture régler</td>
+                  :<td className={`border-b `}><a href='/dashbord/factures/pay' className='w-24 h-full px-8 py-2 bg-blue-400 rounded-lg'>payer</a></td>}
                                 </tr>
               )):<tr className="hover:bg-gray-50">
               <td className="py-2 px-4 border-b">Aucune factures</td>

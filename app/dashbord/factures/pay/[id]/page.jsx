@@ -3,12 +3,29 @@ import React from 'react';
 
 import PayPalButton from '../paypal/payPalButton';
 import apis from '@/app/utils/apis';
-const CheckoutPage = ({params :{billID}}) => {
+import { useRouter } from 'next/navigation';
+const CheckoutPage = ({params :{id}}) => {
+  const createAndClickLink = () => {
+    const link = document.createElement('a'); // Crée un élément <a>
+    link.href = '/dashbord/factures'; // Définit l'URL
+    
+    // Ajoutez le lien au document si nécessaire
+    document.body.appendChild(link); 
+  
+    // Simulez un clic sur le lien
+    link.click();
+  
+    // Supprimez le lien si vous ne voulez pas qu'il reste dans le DOM
+    document.body.removeChild(link);
+  };
+  
+
   const handleSuccess = (order) => {
 
     console.log('Payment successful!', order);
-    apis.payerFacture(billID).then(res=>console.log("payer avec succes",res))
-    // Handle post-payment logic, e.g., save order info to DB
+    apis.payerFacture(id).then(res=>console.log("payer avec succes",res))
+    createAndClickLink();
+    
   };
 
   return (

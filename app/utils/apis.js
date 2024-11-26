@@ -83,7 +83,7 @@ const signin = (email, password) => {
 };
 
 const addComment=(dv,email,parent,data)=>axiosCli.post('/comment/add/'+dv+'/'+email+'/'+parent,data,authent);
-const payerFacture=(id)=>axiosCli.post('/student/payer/'+id,authent);
+const payerFacture=(id)=>axiosCli.post('/student/payer/'+id,{},authent);
 const addComment2Cours=(cours,email,parent,data)=>axiosCli.post('/comment/addCoursComment/'+cours+'/'+email+'/'+parent,data,authent);
 
 

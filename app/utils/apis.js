@@ -17,14 +17,14 @@ var classe
 
 const tkn=()=> {
 authent={  headers: {
-  'Authorization': `Bearer ${sessionWork.getSessionValue("token")}`,
+  'Authorization': `Bearer ${sessionWork?.getSessionValue("token")}`,
   'Content-Type': 'application/json' // Spécifie que les données sont envoyées en JSON
 }}
 
 //const route=useRouter()
 
-  student=sessionWork.getSessionValue("token")?jwtDecode(sessionWork.getSessionValue("token"))?.sub:useRouter().push("/signin");
-  classe=sessionWork.getSessionValue("token")?jwtDecode(sessionWork.getSessionValue("token"))?.classe:useRouter().push("signin");
+  student=sessionWork?.getSessionValue("token")?jwtDecode(sessionWork?.getSessionValue("token"))?.sub:useRouter().push("/signin");
+  classe=sessionWork?.getSessionValue("token")?jwtDecode(sessionWork?.getSessionValue("token"))?.classe:useRouter().push("signin");
 
 }
 
@@ -83,6 +83,7 @@ const signin = (email, password) => {
 };
 
 const addComment=(dv,email,parent,data)=>axiosCli.post('/comment/add/'+dv+'/'+email+'/'+parent,data,authent);
+const payerFacture=(id)=>axiosCli.post('/student/payer/'+id,authent);
 const addComment2Cours=(cours,email,parent,data)=>axiosCli.post('/comment/addCoursComment/'+cours+'/'+email+'/'+parent,data,authent);
 
 
@@ -120,6 +121,7 @@ export default{
   getNofificationsNotReading,
   forgotMyPassword,
   delComment,
+  payerFacture,
   tkn
 
 }

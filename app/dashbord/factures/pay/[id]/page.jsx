@@ -1,10 +1,13 @@
 'use client'
 import React from 'react';
 
-import PayPalButton from './paypal/payPalButton';
-const CheckoutPage = () => {
+import PayPalButton from '../paypal/payPalButton';
+import apis from '@/app/utils/apis';
+const CheckoutPage = ({params :{billID}}) => {
   const handleSuccess = (order) => {
+
     console.log('Payment successful!', order);
+    apis.payerFacture(billID).then(res=>console.log("payer avec succes",res))
     // Handle post-payment logic, e.g., save order info to DB
   };
 

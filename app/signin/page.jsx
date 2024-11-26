@@ -10,6 +10,7 @@ import sessionWork from '../utils/sessionWork'
 import { ArrowLeftCircle } from 'lucide-react'
 
 function page() {
+  sessionWork.setSessionValue('token', null)
 
   const email = useRef()
   const password=useRef()
@@ -28,6 +29,7 @@ function page() {
     if (res.status === 200) {
       
       // Save token to session
+      console.log("Lg : ",res);
       sessionWork.setSessionValue('token', res?.data?.token)
       router.push('/dashbord');
       console.log("Login successful");

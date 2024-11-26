@@ -86,7 +86,7 @@ useEffect(()=>{
                   <td className="py-2 px-4 border-b">{formatDate(facture.limiteDate)}</td>
                   <td className="py-2 px-4 border-b">{facture.montant.toFixed(2)} DH</td>
                   {facture?.etat=='Payee'?<td className={`w-24 py-2 px-4 border-b bg-green-500`}>Facture régler</td>
-                  :<td className={`border-b `}><a href='/dashbord/factures/pay' className='w-24 h-full px-8 py-2 bg-blue-400 rounded-lg'>payer</a></td>}
+                  :<td className={`border-b `}><a href={`/dashbord/factures/pay/${facture.billID}`} className='w-24 h-full px-8 py-2 bg-blue-400 rounded-lg'>payer</a></td>}
                                 </tr>
               )):<tr className="hover:bg-gray-50">
               <td className="py-2 px-4 border-b">Aucune factures</td>

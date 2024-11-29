@@ -50,6 +50,8 @@ console.log("year",noteFinale)
         <div className="w-1/2">
           <label className="block text-sm font-medium text-gray-700">Année Scolaire</label>
           <select onChange={()=>handleChange()} className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" ref={yearschool}>
+           <option>2022-2023</option>
+            <option>2023-2024</option>
             <option selected>2024-2025</option>
             <option>2025-2026</option>
             <option>2026-2027</option>

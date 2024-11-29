@@ -58,7 +58,6 @@ export default function Page() {
 
   return (
     <div className="w-full mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-      <h1 className="text-2xl font-semibold text-blue-700 mb-6">Bonjour MOHAMED EL-HATHAT,</h1>
       <h3 className="text-xl font-medium text-gray-500">Vos absences</h3>
 
       <div className="bg-blue-500 text-white p-4 flex justify-between items-center">
